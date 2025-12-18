@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NAZIMXLIVE | Ultimate Search Panel</title>
+    <title>NAZIMXLIVE | Ultimate 100+ Panels</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
     <style>
         :root { --main: #ff6600; --bg: #050505; --error: #ff0000; --ff-glow: #00f2ff; }
         
-        /* আরজিবি ও শেক এনিমেশন */
+        /* RGB & Animations */
         @keyframes rgbText {
             0% { color: #ff0000; text-shadow: 0 0 10px #ff0000; }
             33% { color: #00ff00; text-shadow: 0 0 10px #00ff00; }
@@ -32,7 +32,7 @@
 
         body { background: var(--bg); color: white; font-family: 'Poppins', sans-serif; margin: 0; overflow-x: hidden; scroll-behavior: smooth; }
 
-        /* লগইন সেকশন */
+        /* Login */
         #login-screen { height: 100vh; display: flex; justify-content: center; align-items: center; padding: 20px; background: #000; }
         .login-box { 
             background: rgba(10, 10, 10, 0.98); padding: 40px; border-radius: 20px; 
@@ -41,46 +41,39 @@
         }
         .login-box.error-shake { animation: shake 0.2s ease-in-out 2; border-color: var(--error); }
         .rgb-title { font-family: 'Orbitron'; font-size: 24px; letter-spacing: 4px; margin-bottom: 30px; animation: rgbText 5s linear infinite; }
-        
         input { width: 100%; padding: 14px; margin-bottom: 20px; background: #000; border: 1px solid #333; color: white; border-radius: 10px; font-family: 'Orbitron'; outline: none; box-sizing: border-box; text-align: center; }
-        #error-msg { color: var(--error); font-family: 'Orbitron'; font-size: 11px; margin-top: -10px; margin-bottom: 15px; display: none; text-shadow: 0 0 5px var(--error); }
+        #error-msg { color: var(--error); font-family: 'Orbitron'; font-size: 11px; margin-top: -10px; margin-bottom: 15px; display: none; }
         .btn-main { background: white; color: black; border: none; padding: 15px; font-family: 'Orbitron'; font-weight: bold; border-radius: 8px; cursor: pointer; width: 100%; transition: 0.3s; }
-        .btn-main:hover { background: var(--main); color: white; }
 
-        /* ড্যাশবোর্ড প্যানেল */
+        /* Dashboard */
         #main-panel { display: none; padding: 40px 15px; text-align: center; }
-        .profile-img { width: 100px; height: 100px; border-radius: 50%; border: 2px solid var(--main); box-shadow: 0 0 20px var(--main); margin-bottom: 10px; object-fit: cover; }
-        
-        /* প্রিমিয়াম সার্চ বার */
         .search-wrapper { position: sticky; top: 10px; z-index: 100; max-width: 600px; margin: 0 auto 30px; }
         #listSearch { 
-            width: 100%; padding: 15px 20px; background: #111; border: 1px solid #444; 
-            border-radius: 50px; color: #fff; font-family: 'Poppins'; font-size: 14px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5); transition: 0.3s; text-align: left;
+            width: 100%; padding: 15px 25px; background: #111; border: 1px solid var(--main); 
+            border-radius: 50px; color: #fff; font-family: 'Orbitron'; font-size: 12px;
+            box-shadow: 0 4px 15px rgba(255,102,0,0.2); transition: 0.3s; text-align: left;
         }
-        #listSearch:focus { border-color: var(--main); box-shadow: 0 0 20px rgba(255, 102, 0, 0.4); }
+        #listSearch:focus { box-shadow: 0 0 20px var(--main); outline: none; }
 
-        /* লিস্ট ডিজাইন */
+        /* Items */
         .list-container { max-width: 600px; margin: 0 auto; text-align: left; }
-        .section-header { font-family: 'Orbitron'; color: var(--main); font-size: 13px; margin: 25px 0 15px; letter-spacing: 2px; border-left: 3px solid var(--main); padding-left: 10px; }
-        
-        .panel-list { list-style: none; padding: 0; }
+        .section-header { font-family: 'Orbitron'; color: var(--main); font-size: 13px; margin: 25px 0 15px; border-left: 3px solid var(--main); padding-left: 10px; }
         .panel-item { 
-            background: rgba(255,255,255,0.03); margin-bottom: 12px; padding: 18px; 
-            border-radius: 15px; border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.03); margin-bottom: 10px; padding: 15px 20px; 
+            border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);
             display: flex; justify-content: space-between; align-items: center;
-            transition: 0.3s; text-decoration: none; color: white; font-family: 'Orbitron'; font-size: 12px;
+            transition: 0.3s; text-decoration: none; color: white; font-family: 'Orbitron'; font-size: 11px;
         }
         .panel-item:hover { background: rgba(255, 102, 0, 0.1); border-color: var(--main); transform: scale(1.02); }
-        
-        /* FF Special Glow */
-        .ff-special { 
-            font-weight: 700; color: #fff; text-shadow: 0 0 8px var(--ff-glow);
-            border-left: 5px solid var(--ff-glow); background: linear-gradient(90deg, rgba(0, 242, 255, 0.05), transparent);
-        }
+        .ff-special { border-left: 5px solid var(--ff-glow); text-shadow: 0 0 8px var(--ff-glow); font-weight: bold; }
 
-        /* নো রেজাল্ট মেসেজ */
-        #no-results { display: none; color: #555; font-family: 'Orbitron'; margin-top: 50px; font-size: 14px; }
+        /* Coming Soon Popup */
+        #coming-soon { 
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: rgba(0,0,0,0.9); z-index: 1000000; justify-content: center; align-items: center;
+        }
+        .cs-box { background: #000; border: 2px solid var(--main); padding: 40px; border-radius: 20px; text-align: center; box-shadow: 0 0 30px var(--main); }
+        .cs-box h3 { font-family: 'Orbitron'; color: var(--main); margin-bottom: 20px; letter-spacing: 5px; }
 
         @media (max-width: 768px) { #cursor, #cursor-outline { display: none; } * { cursor: auto !important; } }
     </style>
@@ -93,76 +86,87 @@
     <div id="login-screen">
         <div class="login-box" id="lBox">
             <div class="rgb-title">NAZIM PANEL</div>
-            <input type="text" id="user" placeholder="USERNAME" autocomplete="off">
+            <input type="text" id="user" placeholder="USERNAME">
             <input type="password" id="pass" placeholder="PASSWORD">
-            <div id="error-msg">INVALID ACCESS: TRY AGAIN</div>
-            <button class="btn-main" onclick="startSystem()">ACCESS LOGIN</button>
+            <div id="error-msg">INVALID KEY!</div>
+            <button class="btn-main" onclick="startSystem()">LOGIN</button>
         </div>
     </div>
 
     <div id="main-panel">
-        <img src="profile.jpg" class="profile-img" alt="Nazim">
         <h2 style="font-family: 'Orbitron'; letter-spacing: 3px; margin-bottom: 20px;">NAZIM <span style="color:var(--main)">XLIVE</span></h2>
         
         <div class="search-wrapper">
-            <input type="text" id="listSearch" placeholder="Search here (ex: Youtube, Config...)" onkeyup="youtubeSearch()">
+            <input type="text" id="listSearch" placeholder="Search 100+ Panels..." onkeyup="youtubeSearch()">
         </div>
 
-        <div class="list-container" id="listBody">
+        <div class="list-container">
             <div class="section-group">
-                <div class="section-header">FREE FIRE PANEL</div>
+                <div class="section-header">ACTIVE PANEL</div>
                 <div class="panel-list">
                     <a href="FF_PANEL_RED_1.apk" download class="panel-item ff-special search-card"><span>🎯 AUTO HEADSHOT CONFIG</span></a>
-                    <a href="#" class="panel-item ff-special search-card"><span>⚡ FREE PANEL V1 (LATEST)</span></a>
-                    <a href="#" class="panel-item ff-special search-card"><span>🚀 SENSITIVITY BOOSTER</span></a>
                 </div>
             </div>
 
             <div class="section-group">
-                <div class="section-header">MY SOCIAL MEDIA LINK</div>
-                <div class="panel-list">
-                    <a href="https://www.youtube.com/@XTR_NAZIM" target="_blank" class="panel-item search-card"><span>YOUTUBE CHANNEL</span></a>
-                    <a href="https://www.facebook.com/nazimontop" target="_blank" class="panel-item search-card"><span>FACEBOOK PAGE</span></a>
-                    <a href="https://wa.me/8801XXXXXXXXX" target="_blank" class="panel-item search-card"><span>WHATSAPP GROUP</span></a>
-                    <a href="https://www.tiktok.com/@esports_x_logo" target="_blank" class="panel-item search-card"><span>TIKTOK PROFILE</span></a>
-                </div>
+                <div class="section-header">MORE GAME PANELS</div>
+                <div class="panel-list" id="game-list">
+                    </div>
             </div>
 
-            <div id="no-results">NO PANEL FOUND!</div>
-            
-            <button class="btn-main" style="background:transparent; color:red; border:1px solid red; margin-top: 50px;" onclick="location.reload()">LOGOUT</button>
+            <div class="section-group">
+                <div class="section-header">SOCIAL MEDIA</div>
+                <div class="panel-list">
+                    <a href="https://www.youtube.com/@XTR_NAZIM" target="_blank" class="panel-item search-card"><span>YOUTUBE CHANNEL</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="coming-soon" onclick="this.style.display='none'">
+        <div class="cs-box">
+            <h3>COMING SOON...</h3>
+            <p style="font-family: 'Orbitron'; font-size: 10px; color: #666;">This panel is currently under maintenance.</p>
         </div>
     </div>
 
     <script>
-        // ইউটিউব স্টাইল সার্চ লজিক
+        // ১০০টি গেমের লিস্ট অটো জেনারেট
+        const games = [
+            "PUBG MOBILE", "MINECRAFT", "GTA V", "ROBLOX", "CALL OF DUTY", "MOBILE LEGENDS", "CLASH OF CLANS", "FORTNITE", 
+            "VALORANT", "APEX LEGENDS", "GENSHIN IMPACT", "AMONG US", "LEAGUE OF LEGENDS", "DOTA 2", "FIFA 24", "CRICKET 24",
+            "SUBWAY SURFERS", "TEMPLE RUN", "CANDY CRUSH", "8 BALL POOL", "LUDO KING", "POKEMON GO", "BRAWL STARS", "CLASH ROYALE",
+            "ASPHALT 9", "NEED FOR SPEED", "CYBERPUNK 2077", "ELDEN RING", "MINI MILITIA", "FREE FIRE MAX", "TEKKEN 7", "SPIDERMAN",
+            "BATMAN ARKHAM", "GOD OF WAR", "MINECRAFT PE", "MODERN WARFARE", "BATTLEFIELD V", "TERRARIA", "STARDEW VALLEY", "FALL GUYS",
+            "RUST", "ARK SURVIVAL", "BULLY", "GTA SAN ANDREAS", "GTA VICE CITY", "SUMMERTIME SAGA", "HITMAN", "RESIDENT EVIL",
+            "ASSASSINS CREED", "FAR CRY 6", "WATCH DOGS", "FORZA HORIZON", "EURO TRUCK", "WORLD OF TANKS", "OVERWATCH 2", "WARZONE",
+            "DOOM ETERNAL", "HALO INFINITE", "DESTINY 2", "MARIO KART", "SONIC DASH", "ANGRY BIRDS", "PLANTS VS ZOMBIES", "MORTAL KOMBAT",
+            "SHADOW FIGHT 3", "VECTOR", "DRIVING SCHOOL", "BUS SIMULATOR", "TRUCK SIMULATOR", "FARMING SIMULATOR", "ZOMBIE CATCHERS",
+            "SNIPER 3D", "DEAD TARGET", "FRUITS NINJA", "JETPACK JOYRIDE", "HILL CLIMB", "SHADOW OF DEATH", "TETRIS", "PAC MAN",
+            "RAID SHADOW", "LORDS MOBILE", "BOOM BEACH", "HAY DAY", "POULTRY FARM", "CRITICAL OPS", "STANDOFF 2", "PIXEL GUN 3D",
+            "WAR ROBOTS", "MARVEL SNAP", "YU GI OH", "HEARTHSTONE", "ROV PANEL", "WILD RIFT", "BRAWLHALLA", "GUILTY GEAR",
+            "STREET FIGHTER", "DRAGON BALL Z", "NARUTO SHIPPUDEN", "ONE PIECE", "DEMON SLAYER"
+        ];
+
+        const gameListContainer = document.getElementById('game-list');
+        games.forEach(game => {
+            const a = document.createElement('a');
+            a.href = "#";
+            a.className = "panel-item search-card";
+            a.onclick = (e) => { e.preventDefault(); document.getElementById('coming-soon').style.display='flex'; };
+            a.innerHTML = `<span>${game} PANEL</span> ⏳`;
+            gameListContainer.appendChild(a);
+        });
+
+        // সার্চ এবং লগইন লজিক
         function youtubeSearch() {
             let input = document.getElementById('listSearch').value.toLowerCase();
             let cards = document.getElementsByClassName('search-card');
-            let groups = document.getElementsByClassName('section-group');
-            let foundAny = false;
-
             for (let i = 0; i < cards.length; i++) {
-                let title = cards[i].innerText.toLowerCase();
-                if (title.includes(input)) {
-                    cards[i].style.display = "flex";
-                    foundAny = true;
-                } else {
-                    cards[i].style.display = "none";
-                }
+                cards[i].style.display = cards[i].innerText.toLowerCase().includes(input) ? "flex" : "none";
             }
-
-            // যদি কোনো সেকশনে সব আইটেম হাইড হয়ে যায়, তবে ওই সেকশনের নামও হাইড হবে
-            for (let j = 0; j < groups.length; j++) {
-                let itemsInGroup = groups[j].querySelectorAll('.search-card');
-                let visibleItems = Array.from(itemsInGroup).filter(item => item.style.display !== 'none');
-                groups[j].style.display = visibleItems.length > 0 ? "block" : "none";
-            }
-
-            document.getElementById('no-results').style.display = foundAny ? "none" : "block";
         }
 
-        // লগইন ফাংশন
         function startSystem() {
             const u = document.getElementById('user').value;
             const p = document.getElementById('pass').value;
@@ -172,11 +176,10 @@
             } else {
                 document.getElementById('error-msg').style.display = 'block';
                 document.getElementById('lBox').classList.add('error-shake');
-                setTimeout(() => { document.getElementById('lBox').classList.remove('error-shake'); }, 400);
+                setTimeout(() => document.getElementById('lBox').classList.remove('error-shake'), 400);
             }
         }
 
-        // কার্সার (পিসি)
         if (window.innerWidth > 768) {
             const cursor = document.getElementById('cursor');
             const cursorOutline = document.getElementById('cursor-outline');
