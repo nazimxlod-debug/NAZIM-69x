@@ -7,6 +7,29 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
     <style>
         :root { --main: #ff6600; --bg: #050505; --card: rgba(255, 255, 255, 0.05); }
+        
+        /* কাস্টম কার্সার স্টাইল */
+        * { cursor: none !important; } /* সাধারণ কার্সার লুকিয়ে ফেলা */
+        #cursor {
+            width: 20px; height: 20px;
+            background: var(--main);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            box-shadow: 0 0 20px var(--main), 0 0 40px var(--main);
+            transition: transform 0.1s ease;
+        }
+        #cursor-outline {
+            width: 40px; height: 40px;
+            border: 2px solid var(--main);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+            transition: 0.15s ease-out;
+        }
+
         body { background: var(--bg); color: white; font-family: 'Poppins', sans-serif; margin: 0; overflow-x: hidden; }
         
         /* এনিমেটেড ব্যাকগ্রাউন্ড */
@@ -18,20 +41,16 @@
         h1 { font-family: 'Orbitron', sans-serif; letter-spacing: 5px; color: var(--main); text-shadow: 0 0 15px var(--main); }
         input { width: 100%; padding: 15px; margin: 15px 0; background: rgba(0,0,0,0.5); border: 1px solid #333; color: white; border-radius: 12px; outline: none; transition: 0.4s; }
         input:focus { border-color: var(--main); box-shadow: 0 0 20px rgba(255, 102, 0, 0.2); }
-        .btn { background: linear-gradient(45deg, #ff6600, #ff3300); color: white; border: none; padding: 15px; width: 110%; border-radius: 12px; cursor: pointer; font-weight: bold; font-family: 'Orbitron', sans-serif; transition: 0.4s; box-shadow: 0 10px 20px rgba(255, 102, 0, 0.3); }
+        .btn { background: linear-gradient(45deg, #ff6600, #ff3300); color: white; border: none; padding: 15px; width: 100%; border-radius: 12px; cursor: pointer; font-weight: bold; font-family: 'Orbitron', sans-serif; transition: 0.4s; box-shadow: 0 10px 20px rgba(255, 102, 0, 0.3); }
         .btn:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(255, 102, 0, 0.5); }
 
         /* ড্যাশবোর্ড ডিজাইন */
         #dashboard { display: none; padding: 60px 20px; animation: slideUp 1s ease; }
-        @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-
         .profile-img { width: 150px; height: 150px; border-radius: 50%; border: 5px solid var(--main); margin-bottom: 20px; box-shadow: 0 0 40px var(--main); object-fit: cover; transition: 0.5s; }
-        .profile-img:hover { transform: rotate(10deg) scale(1.1); }
 
         /* সোশ্যাল বাটন এনিমেশন */
-        .social-container { display: flex; flex-direction: column; align-items: center; gap: 20px; margin-top: 40px; }
         .social-link { 
-            width: 90%; max-width: 500px; padding: 20px; 
+            width: 90%; max-width: 500px; padding: 20px; margin: 10px auto;
             background: var(--card); border-radius: 15px; 
             text-decoration: none; color: white; font-weight: 600; 
             border: 1px solid rgba(255,255,255,0.1);
@@ -39,36 +58,26 @@
             display: flex; justify-content: center; align-items: center;
             font-family: 'Orbitron', sans-serif; font-size: 18px;
         }
-
-        /* মাউস নিলেই যে এনিমেশন হবে */
-        .social-link::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transition: 0.5s; }
-        .social-link:hover::before { left: 100%; }
-
         .social-link:hover { 
             transform: scale(1.08) translateY(-5px); 
-            background: var(--main); 
-            color: black;
+            background: var(--main); color: black;
             box-shadow: 0 15px 40px rgba(255, 102, 0, 0.6);
-            border-color: white;
         }
 
-        /* ইউটিউব ভিডিও সেকশন */
-        .video-box { 
-            margin-top: 60px; background: var(--card); padding: 30px; 
-            border-radius: 25px; width: 95%; max-width: 700px; 
-            display: inline-block; border: 1px solid rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-        }
-        iframe { width: 100%; height: 350px; border-radius: 15px; border: 2px solid var(--main); box-shadow: 0 0 30px rgba(255, 102, 0, 0.2); }
+        /* ভিডিও সেকশন */
+        .video-box { margin-top: 60px; background: var(--card); padding: 30px; border-radius: 25px; width: 95%; max-width: 700px; display: inline-block; border: 1px solid rgba(255,255,255,0.1); }
+        iframe { width: 100%; height: 350px; border-radius: 15px; border: 2px solid var(--main); }
     </style>
 </head>
 <body>
+    <div id="cursor"></div>
+    <div id="cursor-outline"></div>
+
     <div class="bg-glow"></div>
 
     <div id="login-page" class="login-screen">
         <div class="login-card">
             <h1>NAZIM</h1>
-            <p style="color: #aaa; margin-bottom: 30px;">PREMIUM ACCESS</p>
             <input type="text" id="user" placeholder="Username">
             <input type="password" id="pass" placeholder="Password">
             <button class="btn" onclick="checkLogin()">UNLOCK DASHBOARD</button>
@@ -79,32 +88,53 @@
     <div id="dashboard">
         <img src="https://raw.githubusercontent.com/Nazim300/esportsxlogo/main/587017213_122095470213143175_4113073140647943186_n.jpg" class="profile-img" alt="Nazim">
         <h1 style="margin: 0; font-size: 45px;">NAZIM <span style="color: white;">XLIVE</span></h1>
-        <p style="color: var(--main); letter-spacing: 3px; font-weight: bold;">CREATIVE DESIGNER</p>
-
-        <div class="social-container">
+        
+        <div class="social-container" style="margin-top: 30px;">
             <a href="https://www.youtube.com/@XTR_NAZIM" target="_blank" class="social-link">YOUTUBE CHANNEL</a>
             <a href="https://www.tiktok.com/@esports_x_logo" target="_blank" class="social-link">TIKTOK OFFICIAL</a>
             <a href="https://www.facebook.com/nazimontop" target="_blank" class="social-link">FACEBOOK PAGE</a>
         </div>
 
         <div class="video-box">
-            <h2 style="font-family: 'Orbitron', sans-serif; color: var(--main); margin-bottom: 20px;">LATEST CONTENT</h2>
             <iframe src="https://www.youtube.com/embed/phep1mEYH7E" frameborder="0" allowfullscreen></iframe>
         </div>
-        
-        <br>
-        <button onclick="location.reload()" class="btn" style="width: auto; padding: 10px 50px; background: #222; margin-top: 50px; box-shadow: none; font-size: 12px;">LOGOUT ADMIN</button>
     </div>
 
     <script>
+        // কার্সার মুভমেন্ট স্ক্রিপ্ট
+        const cursor = document.getElementById('cursor');
+        const cursorOutline = document.getElementById('cursor-outline');
+
+        window.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            
+            // আউটলাইন কার্সারটি একটু ধীরে পিছে পিছে আসবে (Smooth effect)
+            cursorOutline.animate({
+                left: e.clientX - 20 + 'px',
+                top: e.clientY - 20 + 'px'
+            }, { duration: 500, fill: "forwards" });
+        });
+
+        // বাটন বা লিঙ্কে মাউস নিলে কার্সার বড় হবে
+        const links = document.querySelectorAll('a, button, input');
+        links.forEach(link => {
+            link.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'scale(2)';
+                cursorOutline.style.transform = 'scale(1.5)';
+                cursorOutline.style.borderColor = 'white';
+            });
+            link.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'scale(1)';
+                cursorOutline.style.transform = 'scale(1)';
+                cursorOutline.style.borderColor = 'var(--main)';
+            });
+        });
+
         function checkLogin() {
-            const u = document.getElementById("user").value;
-            const p = document.getElementById("pass").value;
-            // ইউজারনেম এবং পাসওয়ার্ড দুইটাই 'nazim'
-            if (u === "nazim" && p === "nazim") {
+            if (document.getElementById("user").value === "nazim" && document.getElementById("pass").value === "nazim") {
                 document.getElementById("login-page").style.display = "none";
                 document.getElementById("dashboard").style.display = "block";
-                document.body.style.overflow = "auto";
             } else {
                 document.getElementById("msg").style.display = "block";
             }
