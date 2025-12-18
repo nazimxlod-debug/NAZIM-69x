@@ -3,104 +3,174 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NAZIMXLIVE | Ultimate Gaming Panel</title>
+    <title>NAZIMXLIVE | Multi-Device Panel</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
     <style>
         :root { --main: #ff6600; --bg: #050505; --card: rgba(255, 255, 255, 0.05); }
+        
+        /* মাউস কার্সার সেটিংস */
         * { cursor: none !important; }
-        #cursor { width: 12px; height: 12px; background: var(--main); border-radius: 50%; position: fixed; pointer-events: none; z-index: 100000; box-shadow: 0 0 15px var(--main); }
-        #cursor-outline { width: 30px; height: 30px; border: 2px solid var(--main); border-radius: 50%; position: fixed; pointer-events: none; z-index: 99999; transition: 0.15s ease-out; }
-        body { background: var(--bg); color: white; font-family: 'Poppins', sans-serif; margin: 0; overflow-x: hidden; }
-        #dashboard { padding: 50px 20px; text-align: center; }
-        .profile-img { width: 130px; height: 130px; border-radius: 50%; border: 4px solid var(--main); margin-bottom: 15px; box-shadow: 0 0 30px var(--main); object-fit: cover; }
-        
-        /* সোশ্যাল বাটন স্টাইল */
-        .social-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; max-width: 750px; margin: 30px auto; }
-        .social-link { padding: 18px; border-radius: 12px; text-decoration: none; color: white; font-weight: 700; border: 1px solid rgba(255,255,255,0.1); transition: 0.4s; font-family: 'Orbitron', sans-serif; font-size: 11px; background: rgba(255, 255, 255, 0.03); }
-        
-        /* মাউস নিলে কালার হবে */
-        .btn-game:hover { background: #6a1b9a; border-color: #9c27b0; box-shadow: 0 0 20px #9c27b0; }
-        .btn-yt:hover { background: #ff0000; box-shadow: 0 0 20px #ff0000; }
-        .btn-fb:hover { background: #1877f2; box-shadow: 0 0 20px #1877f2; }
-        .btn-tk:hover { background: #000; border-color: #ff0050; box-shadow: 0 0 20px #ff0050; }
-        .btn-wa:hover { background: #25d366; color: black; box-shadow: 0 0 20px #25d366; }
-        .btn-pt:hover { background: var(--main); color: black; box-shadow: 0 0 20px var(--main); }
+        #cursor { width: 10px; height: 10px; background: var(--main); border-radius: 50%; position: fixed; pointer-events: none; z-index: 100000; box-shadow: 0 0 15px var(--main); }
+        #cursor-outline { width: 35px; height: 35px; border: 1px solid var(--main); border-radius: 50%; position: fixed; pointer-events: none; z-index: 99999; transition: 0.15s ease-out; }
 
-        #coming-soon { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 50000; justify-content: center; align-items: center; }
-        .cs-content { background: #000; padding: 40px; border-radius: 20px; border: 2px solid var(--main); text-align: center; box-shadow: 0 0 50px var(--main); width: 90%; max-width: 500px; }
-        #timer { display: flex; justify-content: center; gap: 10px; margin-top: 25px; font-family: 'Orbitron', sans-serif; }
-        .time-box { background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px; min-width: 65px; border: 1px solid rgba(255, 102, 0, 0.2); }
-        .time-box span { display: block; font-size: 24px; color: var(--main); font-weight: bold; }
-        .video-box { margin-top: 40px; background: var(--card); padding: 15px; border-radius: 20px; width: 100%; max-width: 650px; display: inline-block; border: 1px solid rgba(255,255,255,0.1); }
-        iframe { width: 100%; height: 350px; border-radius: 15px; border: 1px solid var(--main); }
+        body { background: var(--bg); color: white; font-family: 'Poppins', sans-serif; margin: 0; overflow-x: hidden; }
+
+        /* লগইন স্ক্রিন - রেসপন্সিভ */
+        #login-screen { 
+            height: 100vh; display: flex; justify-content: center; align-items: center; 
+            padding: 20px; background: radial-gradient(circle, #111, #000);
+        }
+        .login-box { 
+            background: rgba(15, 15, 15, 0.9); padding: 40px; border-radius: 20px; 
+            border: 1px solid rgba(255, 102, 0, 0.3); text-align: center; 
+            width: 100%; max-width: 380px; box-shadow: 0 0 50px rgba(0,0,0,1);
+        }
+        .login-box h1 { font-family: 'Orbitron'; color: var(--main); letter-spacing: 5px; margin-bottom: 30px; }
+        input { 
+            width: 100%; padding: 14px; margin-bottom: 20px; background: #000; 
+            border: 1px solid #333; color: white; border-radius: 10px; 
+            font-family: 'Orbitron'; outline: none; box-sizing: border-box;
+        }
+
+        /* মেইন ড্যাশবোর্ড */
+        #main-panel { display: none; padding: 40px 15px; text-align: center; }
+        .profile-img { 
+            width: 140px; height: 140px; border-radius: 50%; border: 3px solid var(--main); 
+            box-shadow: 0 0 30px var(--main); object-fit: cover; margin-bottom: 15px;
+        }
+
+        /* সোশ্যাল গ্রিড (ডেস্কটপে ৩ কলাম, মোবাইলে ২ বা ১) */
+        .social-grid { 
+            display: grid; grid-template-columns: repeat(3, 1fr); 
+            gap: 15px; max-width: 900px; margin: 30px auto; 
+        }
+        .card { 
+            background: var(--card); padding: 20px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.05);
+            text-decoration: none; color: white; font-family: 'Orbitron'; font-size: 12px;
+            transition: 0.4s; backdrop-filter: blur(10px);
+        }
+        .card:hover { border-color: var(--main); background: rgba(255, 102, 0, 0.1); transform: translateY(-5px); }
+
+        /* ভিডিও সেকশন রেসপন্সিভ */
+        .video-box { 
+            width: 100%; max-width: 700px; margin: 40px auto; 
+            border: 1px solid #333; border-radius: 20px; overflow: hidden;
+            background: #000; line-height: 0;
+        }
+        .video-box iframe { width: 100%; height: 400px; border: none; }
+
+        /* টাইমার পপ-আপ */
+        #popup { 
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: rgba(0,0,0,0.98); z-index: 1000000; justify-content: center; align-items: center; padding: 20px;
+        }
+        .popup-content { text-align: center; border: 1px solid var(--main); padding: 40px; border-radius: 25px; background: #000; width: 100%; max-width: 450px; }
+        .timer-grid { display: flex; justify-content: center; gap: 15px; margin: 25px 0; }
+        .t-box { background: #111; padding: 15px; border-radius: 10px; min-width: 70px; border-bottom: 3px solid var(--main); }
+        .t-box span { display: block; font-size: 28px; font-family: 'Orbitron'; color: var(--main); font-weight: bold; }
+        .t-box label { font-size: 10px; color: #666; }
+
+        .btn-main {
+            background: var(--main); color: #000; border: none; padding: 15px 40px; 
+            font-family: 'Orbitron'; font-weight: bold; border-radius: 8px; cursor: pointer; transition: 0.3s;
+        }
+
+        /* 📱 মোবাইল রেসপন্সিভ ব্রেকপয়েন্ট */
+        @media (max-width: 768px) {
+            .social-grid { grid-template-columns: repeat(2, 1fr); }
+            .video-box iframe { height: 250px; }
+            #cursor, #cursor-outline { display: none; } /* মোবাইলে মাউস থাকে না তাই হাইড */
+            * { cursor: auto !important; }
+        }
+
+        @media (max-width: 480px) {
+            .social-grid { grid-template-columns: 1fr; }
+            .login-box { padding: 30px 20px; }
+            .t-box { min-width: 55px; padding: 10px; }
+            .t-box span { font-size: 20px; }
+        }
     </style>
 </head>
 <body>
+
     <div id="cursor"></div>
     <div id="cursor-outline"></div>
-    <audio id="clickSound"><source src="https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3" type="audio/mpeg"></audio>
 
-    <div id="coming-soon">
-        <div class="cs-content">
-            <h1 style="color: var(--main); font-family: 'Orbitron';">ARENA OPENING IN</h1>
-            <div id="timer">
-                <div class="time-box"><span id="days">00</span><label>Days</label></div>
-                <div class="time-box"><span id="hours">00</span><label>Hours</label></div>
-                <div class="time-box"><span id="mins">00</span><label>Mins</label></div>
-                <div class="time-box"><span id="secs">00</span><label>Secs</label></div>
-            </div>
-            <button onclick="closePopup()" style="margin-top: 20px; padding: 10px 30px; background: var(--main); border: none; cursor: pointer; font-family: 'Orbitron'; color: white; border-radius: 5px;">CLOSE PANEL</button>
+    <div id="login-screen">
+        <div class="login-box">
+            <h1>LOGIN</h1>
+            <input type="text" id="user" placeholder="USERNAME">
+            <input type="password" id="pass" placeholder="PASSWORD">
+            <button class="btn-main" style="width: 100%;" onclick="startSystem()">ACCESS SYSTEM</button>
         </div>
     </div>
 
-    <div id="dashboard">
-        <img src="profile.jpg" class="profile-img" alt="Nazim">
-        <h2 style="font-family: 'Orbitron';">NAZIM <span style="color: var(--main);">XLIVE</span></h2>
+    <div id="main-panel">
+        <img src="profile.jpg" class="profile-img" alt="Nazim Profile">
+        <h2 style="font-family: 'Orbitron'; margin:0; letter-spacing: 5px;">NAZIM <span style="color:var(--main)">XLIVE</span></h2>
         
-        <div class="social-container">
-            <a href="javascript:void(0)" class="social-link btn-game" onclick="playClick(); openPopup()">MY GAMES</a>
-            <a href="https://www.youtube.com/@XTR_NAZIM" target="_blank" class="social-link btn-yt" onclick="playClick()">YOUTUBE</a>
-            <a href="https://www.facebook.com/nazimontop" target="_blank" class="social-link btn-fb" onclick="playClick()">FACEBOOK</a>
-            <a href="https://www.tiktok.com/@esports_x_logo" target="_blank" class="social-link btn-tk" onclick="playClick()">TIKTOK</a>
-            <a href="https://wa.me/8801XXXXXXXXX" target="_blank" class="social-link btn-wa" onclick="playClick()">WHATSAPP</a>
-            <a href="#" class="social-link btn-pt" onclick="playClick(); alert('Logo Portfolio Coming Soon!')">PORTFOLIO</a>
+        <div class="social-grid">
+            <a href="javascript:void(0)" class="card" onclick="openPop()">MY GAMES</a>
+            <a href="https://www.youtube.com/@XTR_NAZIM" target="_blank" class="card">YOUTUBE</a>
+            <a href="https://www.facebook.com/nazimontop" target="_blank" class="card">FACEBOOK</a>
+            <a href="https://wa.me/8801XXXXXXXXX" target="_blank" class="card">WHATSAPP</a>
+            <a href="https://www.tiktok.com/@esports_x_logo" target="_blank" class="card">TIKTOK</a>
+            <a href="#" class="card" onclick="location.reload()">LOGOUT</a>
         </div>
-        
+
         <div class="video-box">
-             <iframe src="https://www.youtube.com/embed/phep1mEYH7E" frameborder="0" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/phep1mEYH7E" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <div id="popup">
+        <div class="popup-content">
+            <h2 style="font-family: 'Orbitron'; color: var(--main); font-size: 20px;">MISSION STARTS IN</h2>
+            <div class="timer-grid">
+                <div class="t-box"><span id="dd">00</span><label>Days</label></div>
+                <div class="t-box"><span id="hh">00</span><label>Hours</label></div>
+                <div class="t-box"><span id="mm">00</span><label>Mins</label></div>
+                <div class="t-box"><span id="ss">00</span><label>Secs</label></div>
+            </div>
+            <button class="btn-main" onclick="closePop()">CLOSE PANEL</button>
         </div>
     </div>
 
     <script>
-        const cursor = document.getElementById('cursor');
-        const cursorOutline = document.getElementById('cursor-outline');
-        window.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px';
-            cursorOutline.animate({ left: e.clientX - 15 + 'px', top: e.clientY - 15 + 'px' }, { duration: 400, fill: "forwards" });
-        });
+        // কাস্টম কার্সার লজিক (পিসির জন্য)
+        if (window.innerWidth > 768) {
+            const cursor = document.getElementById('cursor');
+            const cursorOutline = document.getElementById('cursor-outline');
+            window.addEventListener('mousemove', (e) => {
+                cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px';
+                cursorOutline.animate({ left: e.clientX - 17 + 'px', top: e.clientY - 17 + 'px' }, { duration: 400, fill: "forwards" });
+            });
+        }
 
-        function playClick() { document.getElementById("clickSound").play(); }
-        function openPopup() { document.getElementById("coming-soon").style.display = "flex"; }
-        function closePopup() { document.getElementById("coming-soon").style.display = "none"; }
+        // লগইন ফাংশন (User: nazim, Pass: nazim)
+        function startSystem() {
+            const u = document.getElementById('user').value;
+            const p = document.getElementById('pass').value;
+            if(u === "nazim" && p === "nazim") {
+                document.getElementById('login-screen').style.display = 'none';
+                document.getElementById('main-panel').style.display = 'block';
+            } else { alert("ACCESS DENIED!"); }
+        }
 
-        // ফিক্সড টাইমার: ২৩ ডিসেম্বর ২০২৫ পর্যন্ত
-        const targetDate = new Date("2025-12-23T00:00:00").getTime();
+        function openPop() { document.getElementById('popup').style.display = 'flex'; }
+        function closePop() { document.getElementById('popup').style.display = 'none'; }
+
+        // ফিক্সড টাইমার: ২৩ ডিসেম্বর ২০২৫
+        const target = new Date("2025-12-23T00:00:00").getTime();
         setInterval(() => {
-            const now = new Date().getTime();
-            const diff = targetDate - now;
-            if (diff > 0) {
-                document.getElementById("days").innerHTML = Math.floor(diff / (1000 * 60 * 60 * 24));
-                document.getElementById("hours").innerHTML = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                document.getElementById("mins").innerHTML = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                document.getElementById("secs").innerHTML = Math.floor((diff % (1000 * 60)) / 1000);
+            const diff = target - new Date().getTime();
+            if(diff > 0) {
+                document.getElementById('dd').innerText = Math.floor(diff / 86400000);
+                document.getElementById('hh').innerText = Math.floor((diff % 86400000) / 3600000);
+                document.getElementById('mm').innerText = Math.floor((diff % 3600000) / 60000);
+                document.getElementById('ss').innerText = Math.floor((diff % 60000) / 1000);
             }
         }, 1000);
-
-        // হোভার ইফেক্ট
-        document.querySelectorAll('a, button').forEach(el => {
-            el.addEventListener('mouseenter', () => { cursor.style.transform = 'scale(2.5)'; });
-            el.addEventListener('mouseleave', () => { cursor.style.transform = 'scale(1)'; });
-        });
     </script>
 </body>
 </html>
