@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NAZIMXLIVE | Clean A-Z Panel</title>
+    <title>NAZIMXLIVE | Ultimate A-Z Panel</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
     <style>
         :root { 
@@ -16,88 +16,78 @@
             --neon-yellow: #fefe33;
         }
 
-        /* শুধু স্পন্সরের জন্য আরজিবি লাইট */
+        /* শুধু স্পন্সরের জন্য RGB */
         @keyframes rgbSponsor {
             0% { color: #ff0000; text-shadow: 0 0 10px #ff0000; }
             25% { color: #00ff00; text-shadow: 0 0 10px #00ff00; }
             50% { color: #0000ff; text-shadow: 0 0 10px #0000ff; }
-            75% { color: #ffff00; text-shadow: 0 0 10px #ffff00; }
             100% { color: #ff0000; text-shadow: 0 0 10px #ff0000; }
         }
 
-        /* ভুল পাসওয়ার্ড দিলে কাঁপানোর এনিমেশন */
         @keyframes shake {
             0%, 100% { transform: translateX(0); }
-            20%, 60% { transform: translateX(-10px); }
-            40%, 80% { transform: translateX(10px); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
         }
 
-        .shake-error {
-            animation: shake 0.4s ease-in-out;
-            border-color: var(--error) !important;
-            box-shadow: 0 0 20px var(--error) !important;
-        }
+        .shake-error { animation: shake 0.3s ease-in-out 2; border-color: var(--error) !important; box-shadow: 0 0 20px var(--error) !important; }
 
-        * { cursor: none !important; }
+        * { cursor: none !important; box-sizing: border-box; }
         #cursor { width: 10px; height: 10px; background: white; border-radius: 50%; position: fixed; pointer-events: none; z-index: 100000; }
         #cursor-outline { width: 40px; height: 40px; border: 2px solid var(--main); border-radius: 50%; position: fixed; pointer-events: none; z-index: 99999; transition: 0.15s ease-out; }
 
-        body { background: var(--bg); color: white; font-family: 'Poppins', sans-serif; margin: 0; overflow-x: hidden; }
+        body { background: var(--bg); color: white; font-family: 'Poppins', sans-serif; margin: 0; overflow-x: hidden; scroll-behavior: smooth; }
 
-        /* স্পন্সর বাই নাজমূল - ক্লিকেবল ও আরজিবি */
+        /* Sponsored Tag */
         .sponsor-tag {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            z-index: 9999;
-            text-decoration: none;
-            background: rgba(0,0,0,0.8);
-            padding: 10px 18px;
-            border-radius: 10px;
-            border: 1px solid rgba(255,255,255,0.1);
+            position: fixed; bottom: 20px; left: 20px; z-index: 9999;
+            text-decoration: none; background: rgba(0,0,0,0.8);
+            padding: 10px 18px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1);
             backdrop-filter: blur(5px);
         }
         .sponsor-text {
-            font-family: 'Orbitron';
-            font-size: 13px;
-            font-weight: 900;
-            letter-spacing: 2px;
-            animation: rgbSponsor 3s linear infinite;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            font-family: 'Orbitron'; font-size: 13px; font-weight: 900;
+            letter-spacing: 2px; animation: rgbSponsor 3s linear infinite;
+            display: flex; align-items: center; gap: 8px;
         }
 
-        /* লগইন বক্স */
+        /* Login */
         #login-screen { height: 100vh; display: flex; justify-content: center; align-items: center; background: #000; }
         .login-box { 
             background: rgba(15, 15, 15, 0.95); padding: 40px; border-radius: 30px; 
-            border: 2px solid #222; text-align: center; width: 100%; max-width: 380px;
-            transition: 0.3s;
+            border: 2px solid #222; text-align: center; width: 90%; max-width: 380px; transition: 0.3s;
         }
-        .login-title { font-family: 'Orbitron'; font-size: 24px; font-weight: 900; color: #fff; letter-spacing: 4px; margin-bottom: 30px; }
-        input { width: 100%; padding: 15px; margin-bottom: 20px; background: #111; border: 1px solid #333; color: #fff; border-radius: 12px; font-family: 'Orbitron'; outline: none; text-align: center; transition: 0.3s; }
+        .login-title { font-family: 'Orbitron'; font-size: 24px; font-weight: 900; color: #fff; margin-bottom: 30px; }
+        input { width: 100%; padding: 15px; margin-bottom: 20px; background: #111; border: 1px solid #333; color: #fff; border-radius: 12px; outline: none; text-align: center; font-family: 'Orbitron'; }
         .btn-main { background: var(--main); color: #fff; border: none; padding: 15px; font-family: 'Orbitron'; font-weight: 900; border-radius: 12px; cursor: pointer; width: 100%; text-transform: uppercase; }
 
-        /* ড্যাশবোর্ড */
+        /* Dashboard */
         #main-panel { display: none; padding: 40px 15px; }
         .search-wrapper { position: sticky; top: 15px; z-index: 1000; max-width: 600px; margin: 0 auto 40px; }
         #listSearch { 
             width: 100%; padding: 18px 30px; background: rgba(20,20,20,0.9); border: 2px solid var(--main); 
-            border-radius: 50px; color: #fff; font-family: 'Orbitron'; font-size: 14px; outline: none; box-sizing: border-box;
+            border-radius: 50px; color: #fff; font-family: 'Orbitron'; box-shadow: 0 0 20px rgba(255,102,0,0.2);
+        }
+
+        /* A B C D ডিজাইন */
+        .alpha-label { 
+            font-family: 'Orbitron'; font-size: 50px; font-weight: 900; 
+            color: transparent; -webkit-text-stroke: 1px var(--neon-blue);
+            margin: 40px 0 20px; display: block; text-shadow: 0 0 15px var(--neon-blue);
         }
 
         .list-container { max-width: 600px; margin: 0 auto; padding-bottom: 100px; }
-        .game-group { margin-bottom: 25px; background: #111; padding: 20px; border-radius: 20px; border: 1px solid #222; }
-        .group-header { font-family: 'Orbitron'; font-size: 18px; font-weight: 900; margin-bottom: 15px; color: var(--neon-yellow); border-left: 4px solid var(--neon-yellow); padding-left: 10px; }
+        .game-group { margin-bottom: 25px; background: #111; padding: 20px; border-radius: 20px; border: 1px solid #222; transition: 0.3s; }
+        .group-header { font-family: 'Orbitron'; font-size: 18px; font-weight: 900; margin-bottom: 15px; color: var(--neon-yellow); border-left: 4px solid var(--neon-yellow); padding-left: 10px; text-transform: uppercase; }
 
         .panel-item { 
             background: #000; margin-bottom: 10px; padding: 14px 20px; border-radius: 12px; border: 1px solid #333;
             display: flex; justify-content: space-between; align-items: center; text-decoration: none; 
-            font-family: 'Orbitron'; font-size: 12px; color: #888; transition: 0.3s;
+            font-family: 'Orbitron'; font-size: 12px; color: #fff; transition: 0.3s;
         }
-        .panel-item:hover { background: #1a1a1a; color: var(--neon-green); border-color: var(--neon-green); }
-        .active-ff-card { border: 1px solid var(--neon-pink) !important; color: var(--neon-pink) !important; }
+        .panel-item:hover { background: var(--neon-green); color: #000; font-weight: bold; }
+
+        .active-ff-card { border: 2px solid var(--neon-pink) !important; color: var(--neon-pink) !important; }
 
         @media (max-width: 768px) { #cursor, #cursor-outline { display: none; } * { cursor: auto !important; } }
     </style>
@@ -124,88 +114,113 @@
     </div>
 
     <div id="main-panel">
-        <center><h2 style="font-family: 'Orbitron'; letter-spacing: 5px; font-weight: 900; color: #fff;">NAZIM <span style="color:var(--main)">XLIVE</span></h2></center>
-        <div class="search-wrapper"><input type="text" id="listSearch" placeholder="SEARCH FOR GAME..." onkeyup="filterList()"></div>
-        <div class="list-container" id="alphabetical-list">
-             <div class="game-group" style="border-color: var(--neon-pink);">
-                <div class="group-header" style="color: var(--neon-pink); border-color: var(--neon-pink);">⭐ ACTIVE DOWNLOAD</div>
-                <a href="FF_PANEL_RED_1.apk" download class="panel-item active-ff-card"><span>🎯 AUTO HEADSHOT CONFIG</span> <span>[APK]</span></a>
+        <center><h1 style="font-family: 'Orbitron';">NAZIM <span style="color:var(--main)">XLIVE</span></h1></center>
+        <div class="search-wrapper">
+            <input type="text" id="listSearch" placeholder="SEARCH 10,000+ GAMES..." onkeyup="filterList()">
+        </div>
+
+        <div class="list-container">
+            <div class="game-group" style="border-color: var(--neon-pink);">
+                <div class="group-header" style="color: var(--neon-pink); border-color: var(--neon-pink);">⭐ FREE FIRE SECTION</div>
+                <a href="FF_PANEL_RED_1.apk" download class="panel-item active-ff-card"><span>🎯 AUTO HEADSHOT</span> <span>[APK]</span></a>
             </div>
-            </div>
+
+            <div id="alphabetical-list"></div>
+        </div>
     </div>
 
     <script>
-        // লগইন লজিক উইথ শেক এনিমেশন
-        function startSystem() {
-            const loginBox = document.getElementById('loginBox');
-            const user = document.getElementById('user').value;
-            const pass = document.getElementById('pass').value;
+        // এখানে আপনি হাজার হাজার গেম নাম অ্যাড করতে পারবেন
+        const gamesData = [
+            { name: "AMONG US", items: ["Mod Menu", "All Unlocked"] },
+            { name: "APEX LEGENDS", items: ["Aimbot", "ESP"] },
+            { name: "ASPHALT 9", items: ["Unlimited Nitro"] },
+            { name: "BRAWL STARS", items: ["Gems Mod"] },
+            { name: "CALL OF DUTY", items: ["Wallhack", "Aim Assist"] },
+            { name: "CLASH OF CLANS", items: ["Unlimited Gold"] },
+            { name: "CYBERPUNK 2077", items: ["Money Mod"] },
+            { name: "DEAD TARGET", items: ["Infinite Ammo"] },
+            { name: "EIGHT BALL POOL", items: ["Long Line"] },
+            { name: "FIFA 25", items: ["Skills Unlock"] },
+            { name: "FORTNITE", items: ["V-Bucks Mod", "Aimbot"] },
+            { name: "GTA V", items: ["God Mode", "Money Hack"] },
+            { name: "GTA SAN ANDREAS", items: ["Cheat Menu"] },
+            { name: "HILL CLIMB", items: ["Coins Mod"] },
+            { name: "LUDO KING", items: ["Always Six"] },
+            { name: "MINECRAFT", items: ["God Mode"] },
+            { name: "MOBILE LEGENDS", items: ["Map Hack"] },
+            { name: "NEED FOR SPEED", items: ["Speed Mod"] },
+            { name: "PUBG MOBILE", items: ["No Recoil", "White Body"] },
+            { name: "ROBLOX", items: ["Fly & Wallhack"] },
+            { name: "STUMBLE GUYS", items: ["Skin Mod"] },
+            { name: "SUBWAY SURFERS", items: ["Keys Mod"] },
+            { name: "TEMPLE RUN", items: ["Unlimited Money"] },
+            { name: "VALORANT", items: ["Trigger Bot"] }
+            // এভাবে আপনি যত খুশি অ্যাড করতে পারবেন
+        ];
 
-            if(user === "nazim" && pass === "nazim") {
+        function startSystem() {
+            const lBox = document.getElementById('loginBox');
+            const u = document.getElementById('user').value;
+            const p = document.getElementById('pass').value;
+
+            if(u === "nazim" && p === "nazim") {
                 document.getElementById('login-screen').style.display = 'none';
                 document.getElementById('main-panel').style.display = 'block';
+                renderGames();
             } else {
-                // পাসওয়ার্ড ভুল হলে লাল হয়ে কাঁপবে
-                loginBox.classList.add('shake-error');
-                
-                // ০.৪ সেকেন্ড পর এনিমেশন রিমুভ করবে যাতে আবার ট্রাই করা যায়
-                setTimeout(() => {
-                    loginBox.classList.remove('shake-error');
-                }, 400);
+                lBox.classList.add('shake-error');
+                setTimeout(() => lBox.classList.remove('shake-error'), 600);
             }
         }
 
-        // গেম লিস্ট ডেটা (আগের মতোই)
-        const allGames = [
-            { name: "AMONG US PANEL", items: ["Imposter Hack"] },
-            { name: "APEX LEGENDS PANEL", items: ["Glow ESP"] },
-            { name: "GTA V PANEL", items: ["Money Hack", "God Mode"] },
-            { name: "PUBG MOBILE PANEL", items: ["No Recoil"] },
-            { name: "ROBLOX PANEL", items: ["Fly Mod"] },
-            { name: "STUMBLE GUYS PANEL", items: ["Skin Unlock"] }
-        ];
+        function renderGames() {
+            const listDiv = document.getElementById('alphabetical-list');
+            listDiv.innerHTML = "";
+            const sorted = {};
 
-        const listDiv = document.getElementById('alphabetical-list');
-        const sortedAlpha = {};
+            gamesData.sort((a,b) => a.name.localeCompare(b.name)).forEach(g => {
+                const char = g.name[0].toUpperCase();
+                if(!sorted[char]) sorted[char] = [];
+                sorted[char].push(g);
+            });
 
-        allGames.sort((a,b) => a.name.localeCompare(b.name)).forEach(game => {
-            const letter = game.name.charAt(0).toUpperCase();
-            if (!sortedAlpha[letter]) sortedAlpha[letter] = [];
-            sortedAlpha[letter].push(game);
-        });
-
-        Object.keys(sortedAlpha).forEach(letter => {
-            const section = document.createElement('div');
-            section.className = "alpha-section";
-            section.innerHTML = `<div style="font-family:'Orbitron'; font-size:30px; color:#222; margin:20px 0;">${letter}</div>`;
-            
-            sortedAlpha[letter].forEach(game => {
-                let html = `<div class="game-group">
-                            <div class="group-header">${game.name}</div>`;
-                game.items.forEach(item => {
-                    html += `<a href="#" class="panel-item"><span>${item}</span> <span>LOCKED</span></a>`;
+            Object.keys(sorted).forEach(char => {
+                let html = `<div class="alpha-section">
+                    <div class="alpha-label">${char}</div>`;
+                sorted[char].forEach(g => {
+                    html += `<div class="game-group">
+                        <div class="group-header">${g.name} PANEL</div>`;
+                    g.items.forEach(i => {
+                        html += `<a href="#" class="panel-item"><span>${i}</span> <span>LOCKED</span></a>`;
+                    });
+                    html += `</div>`;
                 });
                 html += `</div>`;
-                section.innerHTML += html;
+                listDiv.innerHTML += html;
             });
-            listDiv.appendChild(section);
-        });
+        }
 
         function filterList() {
             let input = document.getElementById('listSearch').value.toLowerCase();
             let groups = document.getElementsByClassName('game-group');
+            let sections = document.getElementsByClassName('alpha-section');
             for (let i = 0; i < groups.length; i++) {
-                let headerText = groups[i].querySelector('.group-header').innerText.toLowerCase();
-                groups[i].style.display = headerText.includes(input) ? "block" : "none";
+                let txt = groups[i].querySelector('.group-header').innerText.toLowerCase();
+                groups[i].style.display = txt.includes(input) ? "block" : "none";
+            }
+            for (let s = 0; s < sections.length; s++) {
+                let hasVisible = Array.from(sections[s].querySelectorAll('.game-group')).some(g => g.style.display !== 'none');
+                sections[s].style.display = hasVisible ? "block" : "none";
             }
         }
 
         if (window.innerWidth > 768) {
             const cursor = document.getElementById('cursor');
-            const cursorOutline = document.getElementById('cursor-outline');
+            const outline = document.getElementById('cursor-outline');
             window.addEventListener('mousemove', (e) => {
                 cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px';
-                cursorOutline.animate({ left: e.clientX - 17 + 'px', top: e.clientY - 17 + 'px' }, { duration: 400, fill: "forwards" });
+                outline.animate({ left: e.clientX - 17 + 'px', top: e.clientY - 17 + 'px' }, { duration: 400, fill: "forwards" });
             });
         }
     </script>
