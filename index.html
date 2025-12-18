@@ -3,68 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>eSports X | VIP Gallery</title>
+    <title>NAZIMXLIVE | Official Admin</title>
     <style>
-        body { background-color: #0b0e11; color: #ff6600; text-align: center; font-family: 'Segoe UI', sans-serif; margin: 0; padding-bottom: 50px; }
-        .login-box { margin-top: 100px; display: inline-block; background: #161b22; padding: 40px; border-radius: 20px; border: 3px solid #ff6600; box-shadow: 0 0 30px rgba(255, 102, 0, 0.4); }
-        input { width: 90%; padding: 12px; margin: 10px 0; background: #0b0e11; border: 1px solid #ff6600; color: white; border-radius: 8px; outline: none; }
-        button { background: #ff6600; color: white; border: none; padding: 12px 30px; border-radius: 8px; cursor: pointer; font-weight: bold; width: 100%; transition: 0.3s; }
-        button:hover { background: #ff8533; box-shadow: 0 0 15px #ff6600; }
+        :root { --main: #ff6600; --bg: #0b0e11; --card: #161b22; }
+        body { background: var(--bg); color: white; font-family: 'Segoe UI', sans-serif; margin: 0; text-align: center; }
         
-        #gallery-page { display: none; padding: 20px; }
-        .logo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; padding: 40px; max-width: 1200px; margin: 0 auto; }
-        .logo-card { background: #161b22; border: 2px solid #333; border-radius: 15px; padding: 15px; transition: 0.4s; }
-        .logo-card:hover { border-color: #ff6600; transform: translateY(-10px); box-shadow: 0 10px 30px rgba(255, 102, 0, 0.5); }
-        .logo-card img { width: 100%; border-radius: 10px; height: 250px; object-fit: cover; }
-        .logo-title { margin-top: 15px; color: #fff; font-size: 18px; font-weight: bold; }
+        /* লগইন প্যানেল */
+        .login-screen { height: 100vh; display: flex; justify-content: center; align-items: center; }
+        .login-card { background: var(--card); padding: 40px; border-radius: 20px; border: 2px solid var(--main); width: 320px; box-shadow: 0 0 20px rgba(255, 102, 0, 0.3); }
+        input { width: 90%; padding: 12px; margin: 10px 0; background: #000; border: 1px solid #444; color: white; border-radius: 8px; }
+        .btn { background: var(--main); color: white; border: none; padding: 12px; width: 100%; border-radius: 8px; cursor: pointer; font-weight: bold; margin-top: 10px; }
+
+        /* মেইন ড্যাশবোর্ড */
+        #dashboard { display: none; padding: 40px 20px; }
+        .profile-pic { width: 120px; height: 120px; border-radius: 50%; border: 4px solid var(--main); margin-bottom: 10px; }
+        .social-link { display: block; background: var(--card); padding: 18px; margin: 15px auto; max-width: 450px; border-radius: 12px; text-decoration: none; color: white; font-weight: bold; border-left: 6px solid var(--main); transition: 0.3s; }
+        .social-link:hover { transform: scale(1.03); background: #21262d; }
+        
+        .video-box { margin-top: 40px; background: var(--card); padding: 20px; border-radius: 15px; display: inline-block; width: 90%; max-width: 500px; }
+        iframe { width: 100%; height: 250px; border-radius: 10px; border: 1px solid var(--main); }
     </style>
 </head>
 <body>
 
-    <div id="login-section">
-        <div class="login-box">
-            <h1>ESPORTS X</h1>
-            <p style="color: #888;">Username & Password: esportsx</p>
-            <input type="text" id="user" placeholder="Username">
+    <div id="login-page" class="login-screen">
+        <div class="login-card">
+            <h1 style="color: var(--main); margin-top: 0;">NAZIMXLIVE</h1>
+            <p style="color: #888;">Admin Access Only</p>
+            <input type="text" id="user" placeholder="Username (NAZIM)">
             <input type="password" id="pass" placeholder="Password">
-            <button onclick="checkAccess()">ENTER SITE</button>
-            <p id="err" style="color: #ff4444; display: none; margin-top: 10px;">ভুল পাসওয়ার্ড!</p>
+            <button class="btn" onclick="checkLogin()">LOGIN</button>
         </div>
     </div>
 
-    <div id="gallery-page">
-        <h1 style="font-size: 40px; text-shadow: 0 0 15px #ff6600; margin-bottom: 10px;">PREMIUM LOGOS</h1>
-        <p style="color: #ccc;">Welcome, Nazim! Explore your collection below:</p>
-        
-        <div class="logo-grid">
-            <div class="logo-card">
-                <img src="https://raw.githubusercontent.com/Nazim300/esportsxlogo/main/587017213_122095470213143175_4113073140647943186_n.jpg" alt="Eagle Edition">
-                <div class="logo-title">EXL EAGLE EDITION</div>
-            </div>
+    <div id="dashboard">
+        <img src="https://www.youtube.com/s/desktop/2706346b/img/logos/favicon_144x144.png" class="profile-pic" alt="Nazim">
+        <h1 style="margin: 0;">NAZIM <span style="color: var(--main);">XLIVE</span></h1>
+        <p style="color: #aaa;">Official Social Dashboard</p>
 
-            <div class="logo-card">
-                <img src="https://raw.githubusercontent.com/Nazim300/esportsxlogo/main/download%20(3).jfif" alt="EMT Esports">
-                <div class="logo-title">EMT ESPORTS</div>
-            </div>
-
-            <div class="logo-card">
-                <img src="https://raw.githubusercontent.com/Nazim300/esportsxlogo/main/Esports%20Logo%20Creates%20Xr%20Logo.jfif" alt="Xtream Rushers">
-                <div class="logo-title">XTREAM RUSHERS</div>
-            </div>
+        <div style="margin-top: 30px;">
+            <a href="https://www.tiktok.com/@esports_x_logo" target="_blank" class="social-link" style="border-color: #ff0050;">TIKTOK PROFILE</a>
+            <a href="https://www.youtube.com/@XTR_NAZIM" target="_blank" class="social-link" style="border-color: #ff0000;">YOUTUBE CHANNEL</a>
+            <a href="https://www.facebook.com/nazimontop" target="_blank" class="social-link" style="border-color: #1877f2;">FACEBOOK PAGE</a>
         </div>
 
-        <button onclick="location.reload()" style="width: auto; padding: 12px 50px; margin-top: 30px;">LOGOUT</button>
+        <div class="video-box">
+            <h3 style="color: var(--main);">LATEST FROM YOUTUBE</h3>
+            <iframe src="https://www.youtube.com/embed?listType=user_uploads&list=XTR_NAZIM" frameborder="0" allowfullscreen></iframe>
+        </div>
+        
+        <br>
+        <button onclick="location.reload()" class="btn" style="width: auto; padding: 10px 40px; background: #333;">LOGOUT</button>
     </div>
 
     <script>
-        function checkAccess() {
-            var u = document.getElementById("user").value;
-            var p = document.getElementById("pass").value;
-            if (u === "esportsx" && p === "esportsx") {
-                document.getElementById("login-section").style.display = "none";
-                document.getElementById("gallery-page").style.display = "block";
+        function checkLogin() {
+            const u = document.getElementById("user").value;
+            const p = document.getElementById("pass").value;
+            // পাসওয়ার্ড এখানে 'nazim786' দেওয়া আছে
+            if (u === "NAZIM" && p === "nazim786") {
+                document.getElementById("login-page").style.display = "none";
+                document.getElementById("dashboard").style.display = "block";
             } else {
-                document.getElementById("err").style.display = "block";
+                alert("ভুল পাসওয়ার্ড ভাই!");
             }
         }
     </script>
