@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NAZIMXLIVE | Categorized Panels</title>
+    <title>NAZIMXLIVE | A-Z Premium Panels</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
     <style>
         :root { --main: #ff6600; --bg: #050505; --error: #ff0000; --ff-glow: #00f2ff; }
         
-        /* Animations */
         @keyframes rgbText {
             0% { color: #ff0000; text-shadow: 0 0 10px #ff0000; }
             33% { color: #00ff00; text-shadow: 0 0 10px #00ff00; }
@@ -19,11 +18,6 @@
             0% { border-color: #ff0000; box-shadow: 0 0 15px #ff000044; }
             50% { border-color: #00ff00; box-shadow: 0 0 15px #00ff0044; }
             100% { border-color: #ff0000; box-shadow: 0 0 15px #ff000044; }
-        }
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-8px); }
-            75% { transform: translateX(8px); }
         }
 
         * { cursor: none !important; }
@@ -39,10 +33,8 @@
             border: 2px solid #333; text-align: center; width: 100%; max-width: 380px;
             animation: rgbBorder 5s linear infinite;
         }
-        .login-box.error-shake { animation: shake 0.2s ease-in-out 2; border-color: var(--error); }
         .rgb-title { font-family: 'Orbitron'; font-size: 24px; letter-spacing: 4px; margin-bottom: 30px; animation: rgbText 5s linear infinite; }
         input { width: 100%; padding: 14px; margin-bottom: 20px; background: #000; border: 1px solid #333; color: white; border-radius: 10px; font-family: 'Orbitron'; outline: none; box-sizing: border-box; text-align: center; }
-        #error-msg { color: var(--error); font-family: 'Orbitron'; font-size: 11px; margin-top: -10px; margin-bottom: 15px; display: none; }
         .btn-main { background: white; color: black; border: none; padding: 15px; font-family: 'Orbitron'; font-weight: bold; border-radius: 8px; cursor: pointer; width: 100%; transition: 0.3s; }
 
         /* Dashboard */
@@ -54,29 +46,28 @@
             box-shadow: 0 4px 15px rgba(255,102,0,0.2); transition: 0.3s; text-align: left;
         }
 
-        /* Grouped List Styles */
+        /* Alphabet Sections */
         .list-container { max-width: 600px; margin: 0 auto; text-align: left; }
-        .game-group { margin-bottom: 35px; }
-        .group-header { 
-            font-family: 'Orbitron'; color: var(--main); font-size: 15px; 
-            margin-bottom: 12px; letter-spacing: 2px; 
-            border-bottom: 1px solid rgba(255,102,0,0.3); padding-bottom: 5px;
+        .alpha-section { margin-bottom: 40px; }
+        .alpha-label { 
+            font-family: 'Orbitron'; color: var(--main); font-size: 20px; 
+            margin-bottom: 15px; border-bottom: 2px solid var(--main); display: inline-block; padding-right: 20px;
         }
+        .game-group { margin-bottom: 25px; padding-left: 10px; }
+        .group-header { font-family: 'Orbitron'; color: #888; font-size: 13px; margin-bottom: 10px; letter-spacing: 1px; }
+        
         .panel-item { 
-            background: rgba(255,255,255,0.03); margin-bottom: 10px; padding: 15px 20px; 
-            border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.03); margin-bottom: 8px; padding: 14px 20px; 
+            border-radius: 10px; border: 1px solid rgba(255,255,255,0.05);
             display: flex; justify-content: space-between; align-items: center;
             transition: 0.3s; text-decoration: none; color: white; font-family: 'Orbitron'; font-size: 11px;
         }
-        .panel-item:hover { background: rgba(255, 102, 0, 0.1); border-color: var(--main); transform: translateX(5px); }
+        .panel-item:hover { background: rgba(255, 102, 0, 0.1); border-color: var(--main); transform: translateX(10px); }
         .active-ff { border-left: 5px solid var(--ff-glow); text-shadow: 0 0 8px var(--ff-glow); }
 
-        /* Popup */
-        #coming-soon { 
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            background: rgba(0,0,0,0.95); z-index: 1000000; justify-content: center; align-items: center;
-        }
-        .cs-box { background: #000; border: 2px solid var(--main); padding: 40px; border-radius: 20px; text-align: center; }
+        /* Coming Soon Modal */
+        #coming-soon { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000000; justify-content: center; align-items: center; }
+        .cs-box { background: #000; border: 2px solid var(--main); padding: 40px; border-radius: 20px; text-align: center; box-shadow: 0 0 30px var(--main); }
 
         @media (max-width: 768px) { #cursor, #cursor-outline { display: none; } * { cursor: auto !important; } }
     </style>
@@ -91,8 +82,7 @@
             <div class="rgb-title">NAZIM PANEL</div>
             <input type="text" id="user" placeholder="USERNAME">
             <input type="password" id="pass" placeholder="PASSWORD">
-            <div id="error-msg">INVALID ACCESS KEY!</div>
-            <button class="btn-main" onclick="startSystem()">ENTER SYSTEM</button>
+            <button class="btn-main" onclick="startSystem()">ACCESS LOGIN</button>
         </div>
     </div>
 
@@ -100,92 +90,191 @@
         <h2 style="font-family: 'Orbitron'; letter-spacing: 3px; margin-bottom: 20px;">NAZIM <span style="color:var(--main)">XLIVE</span></h2>
         
         <div class="search-wrapper">
-            <input type="text" id="listSearch" placeholder="Search Game Name..." onkeyup="filterList()">
+            <input type="text" id="listSearch" placeholder="Search Game Name (A-Z)..." onkeyup="filterList()">
         </div>
 
-        <div class="list-container" id="main-list">
-            <div class="game-group">
-                <div class="group-header">FREE FIRE PANEL</div>
-                <a href="FF_PANEL_RED_1.apk" download class="panel-item active-ff search-card"><span>🎯 AUTO HEADSHOT CONFIG</span></a>
-                <a href="#" class="panel-item active-ff search-card" onclick="showCS()"><span>⚡ FREE PANEL V1 (LATEST)</span></a>
+        <div class="list-container">
+            <div class="alpha-section" id="active-sec">
+                <div class="alpha-label">#</div>
+                <div class="game-group">
+                    <div class="group-header">ACTIVE PANEL</div>
+                    <a href="FF_PANEL_RED_1.apk" download class="panel-item active-ff search-card"><span>🎯 AUTO HEADSHOT CONFIG</span></a>
+                </div>
             </div>
+        </div>
 
-            </div>
-
-        <button class="btn-main" style="background:transparent; color:red; border:1px solid red; margin-top: 50px; max-width: 200px;" onclick="location.reload()">LOGOUT</button>
+        <div class="list-container" id="alphabetical-list"></div>
     </div>
 
     <div id="coming-soon" onclick="this.style.display='none'">
         <div class="cs-box">
             <h2 style="font-family: 'Orbitron'; color: var(--main);">COMING SOON...</h2>
-            <p style="color: #666; font-size: 12px;">This feature is under development.</p>
+            <p style="color: #666; font-size: 12px;">This panel is under maintenance.</p>
         </div>
     </div>
 
     <script>
-        // গেম লিস্ট ডেটা (ক্যাটাগরি অনুযায়ী)
-        const gameCategories = [
-            { name: "GTA V PANEL", items: ["GTA V Money Mod", "GTA V God Mode", "GTA V Car Mod"] },
-            { name: "PUBG PANEL", items: ["PUBG Aim Assist", "PUBG No Recoil", "PUBG Skin Mod"] },
-            { name: "ROBLOX PANEL", items: ["Roblox Fly Hack", "Roblox Speed Mod", "Roblox Admin Menu"] },
-            { name: "MINECRAFT PANEL", items: ["MCPE X-Ray", "MCPE God Mode"] },
-            { name: "CALL OF DUTY PANEL", items: ["COD Aimbot", "COD Radar Hack"] },
-            { name: "CLASH OF CLANS PANEL", items: ["COC Private Server", "COC Unlimited Gems"] },
-            { name: "MOBILE LEGENDS PANEL", items: ["MLBB Map Hack", "MLBB Skin Unlocker"] },
-            { name: "FORTNITE PANEL", items: ["Fortnite ESP", "Fortnite Build Bot"] },
-            { name: "VALORANT PANEL", items: ["Valorant Trigger Bot", "Valorant ESP Wall"] },
-            { name: "AMONG US PANEL", items: ["Among Us Imposter Mod", "Among Us All Skins"] }
-            // আপনি চাইলে এখানে আরও ১০০টি গেম এভাবে যোগ করতে পারেন
+        // ১০০টি গেমের ডেটা (A-Z সাজানো)
+        const allGames = [
+            { name: "AMONG US PANEL", items: ["Imposter Hack", "All Skins Unlocked"] },
+            { name: "APEX LEGENDS PANEL", items: ["Apex Aimbot", "Glow ESP"] },
+            { name: "ASPHALT 9 PANEL", items: ["Unlimited Nitro", "Speed Mod"] },
+            { name: "ANGRY BIRDS PANEL", items: ["Unlimited Birds", "Power Up Mod"] },
+            { name: "ARK SURVIVAL PANEL", items: ["Dino Tame Hack", "Unlimited Craft"] },
+            { name: "ASSASSINS CREED PANEL", items: ["Unlimited Health", "Stealth Mod"] },
+            { name: "ATTACK ON TITAN PANEL", items: ["Titan Mode", "Unlimited Gas"] },
+            { name: "BRAWL STARS PANEL", items: ["Unlimited Gems", "All Brawlers"] },
+            { name: "BATTLEFIELD V PANEL", items: ["Radar Hack", "No Recoil"] },
+            { name: "BULLY PANEL", items: ["All Missions Clear", "Infinite Health"] },
+            { name: "BUS SIMULATOR PANEL", items: ["Unlimited Money", "All Buses"] },
+            { name: "CALL OF DUTY PANEL", items: ["COD Aimbot", "Wallhack"] },
+            { name: "CLASH OF CLANS PANEL", items: ["Unlimited Gems", "Max Level"] },
+            { name: "CLASH ROYALE PANEL", items: ["Private Server", "Infinite Elixir"] },
+            { name: "CRITICAL OPS PANEL", items: ["Radar Hack", "Aimbot"] },
+            { name: "CYBERPUNK 2077 PANEL", items: ["Unlimited Money", "God Mode"] },
+            { name: "COUNTER STRIKE PANEL", items: ["Aimbot", "Skin Changer"] },
+            { name: "DOTA 2 PANEL", items: ["Map Hack", "Mana Mod"] },
+            { name: "DEAD TARGET PANEL", items: ["Unlimited Gold", "One Shot"] },
+            { name: "DESTINY 2 PANEL", items: ["Radar Mod", "Skill Boost"] },
+            { name: "DOOM ETERNAL PANEL", items: ["Infinite Ammo", "God Mode"] },
+            { name: "DRAGON BALL Z PANEL", items: ["Ki Mod", "All Characters"] },
+            { name: "DIABLO IMMORTAL PANEL", items: ["Damage Mod", "Unlimited Orbs"] },
+            { name: "DEMON SLAYER PANEL", items: ["Breathing Mod", "Unlimited Stamina"] },
+            { name: "ELDEN RING PANEL", items: ["Unlimited Runes", "Boss Killer"] },
+            { name: "EURO TRUCK PANEL", items: ["Unlimited Cash", "Max XP"] },
+            { name: "FALL GUYS PANEL", items: ["Speed Mod", "Auto Win"] },
+            { name: "FORTNITE PANEL", items: ["ESP Box", "Aim Assist"] },
+            { name: "FIFA 24 PANEL", items: ["Unlimited Coins", "Skill Mod"] },
+            { name: "FAR CRY 6 PANEL", items: ["Wallhack", "Unlimited Gear"] },
+            { name: "FORZA HORIZON PANEL", items: ["All Cars", "Infinite Credits"] },
+            { name: "FARMING SIMULATOR PANEL", items: ["Money Mod", "All Vehicles"] },
+            { name: "FRUITS NINJA PANEL", items: ["Score Boost", "All Blades"] },
+            { name: "GTA V PANEL", items: ["Money Hack", "God Mode", "Car Mod"] },
+            { name: "GTA SAN ANDREAS PANEL", items: ["Cheat Menu", "All Cities"] },
+            { name: "GTA VICE CITY PANEL", items: ["Unlimited Ammo", "Infinite Cash"] },
+            { name: "GENSHIN IMPACT PANEL", items: ["Damage Mod", "Fast Travel"] },
+            { name: "GOD OF WAR PANEL", items: ["Kratos Mod", "Infinite Rage"] },
+            { name: "GUILTY GEAR PANEL", items: ["Combo Mod", "Infinite Gauge"] },
+            { name: "HALO INFINITE PANEL", items: ["Shield Boost", "Aimbot"] },
+            { name: "HITMAN PANEL", items: ["Silent Assassin", "Invisible"] },
+            { name: "HILL CLIMB PANEL", items: ["Unlimited Fuel", "All Cars"] },
+            { name: "HAY DAY PANEL", items: ["Seeds Hack", "Fast Level"] },
+            { name: "HEARTHSTONE PANEL", items: ["Unlimited Dust", "Card Hack"] },
+            { name: "JETPACK JOYRIDE PANEL", items: ["Unlimited Gold", "All Gadgets"] },
+            { name: "JUST CAUSE PANEL", items: ["Unlimited Grapple", "God Mode"] },
+            { name: "LEAGUE OF LEGENDS PANEL", items: ["Scripting Mod", "Skin Unlock"] },
+            { name: "LUDO KING PANEL", items: ["Six Controller", "No Ads"] },
+            { name: "LORDS MOBILE PANEL", items: ["Resource Mod", "Fast Build"] },
+            { name: "LEFT 4 DEAD PANEL", items: ["Infinite Ammo", "Wallhack"] },
+            { name: "MINECRAFT PANEL", items: ["X-Ray", "God Mode", "Infinite Blocks"] },
+            { name: "MOBILE LEGENDS PANEL", items: ["Map Hack", "Skin Unlocker"] },
+            { name: "MODERN WARFARE PANEL", items: ["Radar Mod", "Aimbot"] },
+            { name: "MORTAL KOMBAT PANEL", items: ["Fatality Mod", "Unlimited Souls"] },
+            { name: "MINI MILITIA PANEL", items: ["Unlimited Ammo", "Invisible"] },
+            { name: "MARVEL SNAP PANEL", items: ["Card Unlocker", "Auto Play"] },
+            { name: "MY HERO ACADEMIA PANEL", items: ["Quirk Boost", "Damage Hack"] },
+            { name: "NEED FOR SPEED PANEL", items: ["Nitro Hack", "Unlimited Cash"] },
+            { name: "NARUTO SHIPPUDEN PANEL", items: ["Chakra Mod", "All Ninja"] },
+            { name: "ONE PIECE PANEL", items: ["Haki Boost", "Unlimited Beli"] },
+            { name: "OVERWATCH 2 PANEL", items: ["Wallhack", "Aim Assist"] },
+            { name: "OUTLAST PANEL", items: ["Unlimited Battery", "Invisible"] },
+            { name: "PUBG MOBILE PANEL", items: ["Aim Assist", "No Recoil", "Skin Mod"] },
+            { name: "POKEMON GO PANEL", items: ["Joystick Mod", "Auto Catch"] },
+            { name: "PIXEL GUN 3D PANEL", items: ["Unlimited Gems", "All Guns"] },
+            { name: "PLANTS VS ZOMBIES PANEL", items: ["Unlimited Sun", "No Cooldown"] },
+            { name: "PAC MAN PANEL", items: ["Infinite Lives", "Speed Boost"] },
+            { name: "PAYDAY 2 PANEL", items: ["Silent Heist", "Unlimited Money"] },
+            { name: "ROBLOX PANEL", items: ["Fly Mod", "Wallhack", "Speed Hack"] },
+            { name: "RESIDENT EVIL PANEL", items: ["Infinite Ammo", "God Mode"] },
+            { name: "RUST PANEL", items: ["ESP Mod", "Auto Farm"] },
+            { name: "RAID SHADOW PANEL", items: ["Silver Hack", "Auto Battle"] },
+            { name: "ROCKET LEAGUE PANEL", items: ["Boost Mod", "Aimbot"] },
+            { name: "STUMBLE GUYS PANEL", items: ["Skin Unlock", "Speed Hack", "Gems Mod"] },
+            { name: "SUBWAY SURFERS PANEL", items: ["Unlimited Keys", "High Jump"] },
+            { name: "SNIPER 3D PANEL", items: ["Unlimited Diamonds", "One Shot"] },
+            { name: "SHADOW FIGHT 3 PANEL", items: ["Unlimited Gems", "All Weapons"] },
+            { name: "SPIDERMAN PANEL", items: ["All Suits", "Infinite Web"] },
+            { name: "STANDOFF 2 PANEL", items: ["Skin Changer", "Radar Hack"] },
+            { name: "SONIC DASH PANEL", items: ["Unlimited Rings", "All Heroes"] },
+            { name: "STARDEW VALLEY PANEL", items: ["Unlimited Money", "Instant Grow"] },
+            { name: "TEMPLE RUN 2 PANEL", items: ["Unlimited Coins", "Immortal"] },
+            { name: "TEKKEN 7 PANEL", items: ["All Characters", "One Hit"] },
+            { name: "TERRARIA PANEL", items: ["All Items", "God Mode"] },
+            { name: "TETRIS PANEL", items: ["Classic Skin", "No Limits"] },
+            { name: "TRUCK SIMULATOR PANEL", items: ["Unlimited Fuel", "Max XP"] },
+            { name: "VALORANT PANEL", items: ["Skin Mod", "ESP Box"] },
+            { name: "VECTOR PANEL", items: ["All Tricks", "Infinite Stars"] },
+            { name: "WATCH DOGS PANEL", items: ["Battery Mod", "Fast Hack"] },
+            { name: "WARZONE PANEL", items: ["Aimbot", "Wallhack"] },
+            { name: "WILD RIFT PANEL", items: ["Map Hack", "Auto Last Hit"] },
+            { name: "WORLD OF TANKS PANEL", items: ["Gold Mod", "Auto Aim"] },
+            { name: "WAR ROBOTS PANEL", items: ["Infinite Ammo", "Speed Hack"] },
+            { name: "WWE 2K24 PANEL", items: ["All Legends", "Infinite Finisher"] },
+            { name: "X-COM 2 PANEL", items: ["Accuracy Mod", "God Mode"] },
+            { name: "YU GI OH PANEL", items: ["All Cards", "Auto Duel"] },
+            { name: "YAKUZA PANEL", items: ["Unlimited Health", "Heat Mode"] },
+            { name: "ZOMBIE CATCHERS PANEL", items: ["Plutonium Mod", "Max Gear"] },
+            { name: "ZELDA PANEL", items: ["Unlimited Stamina", "Weapon Mod"] }
         ];
 
-        // লিস্ট জেনারেট করার লজিক
-        const mainList = document.getElementById('main-list');
-        gameCategories.forEach(cat => {
-            const groupDiv = document.createElement('div');
-            groupDiv.className = "game-group";
+        // A-Z সাজানোর এবং ডিসপ্লে করার লজিক
+        const listDiv = document.getElementById('alphabetical-list');
+        const sortedAlpha = {};
+
+        // গেমগুলোকে অক্ষর অনুযায়ী গ্রুপ করা
+        allGames.sort((a,b) => a.name.localeCompare(b.name)).forEach(game => {
+            const letter = game.name.charAt(0).toUpperCase();
+            if (!sortedAlpha[letter]) sortedAlpha[letter] = [];
+            sortedAlpha[letter].push(game);
+        });
+
+        // HTML জেনারেট করা
+        Object.keys(sortedAlpha).forEach(letter => {
+            const section = document.createElement('div');
+            section.className = "alpha-section";
+            let html = `<div class="alpha-label">${letter}</div>`;
             
-            let html = `<div class="group-header">${cat.name}</div>`;
-            cat.items.forEach(item => {
-                html += `<a href="#" class="panel-item search-card" onclick="showCS()"><span>${item}</span> ⏳</a>`;
+            sortedAlpha[letter].forEach(game => {
+                html += `<div class="game-group">
+                            <div class="group-header">${game.name}</div>`;
+                game.items.forEach(item => {
+                    html += `<a href="#" class="panel-item search-card" onclick="showCS()"><span>${item}</span> ⏳</a>`;
+                });
+                html += `</div>`;
             });
-            
-            groupDiv.innerHTML = html;
-            mainList.appendChild(groupDiv);
+            section.innerHTML = html;
+            listDiv.appendChild(section);
         });
 
         function showCS() { document.getElementById('coming-soon').style.display='flex'; }
 
-        // ইউটিউব স্টাইল সার্চ
+        // সার্চ এবং লগইন লজিক
         function filterList() {
             let input = document.getElementById('listSearch').value.toLowerCase();
             let cards = document.getElementsByClassName('search-card');
             let groups = document.getElementsByClassName('game-group');
+            let sections = document.getElementsByClassName('alpha-section');
 
             for (let i = 0; i < cards.length; i++) {
                 cards[i].style.display = cards[i].innerText.toLowerCase().includes(input) ? "flex" : "none";
             }
-
-            // গ্রুপ হেডলাইন হাইড লজিক
             for (let g = 0; g < groups.length; g++) {
                 let items = groups[g].querySelectorAll('.search-card');
-                let hasVisible = Array.from(items).some(i => i.style.display !== 'none');
-                groups[g].style.display = hasVisible ? "block" : "none";
+                groups[g].style.display = Array.from(items).some(i => i.style.display !== 'none') ? "block" : "none";
+            }
+            for (let s = 0; s < sections.length; s++) {
+                let items = sections[s].querySelectorAll('.search-card');
+                sections[s].style.display = Array.from(items).some(i => i.style.display !== 'none') ? "block" : "none";
             }
         }
 
-        // লগইন লজিক
         function startSystem() {
             if(document.getElementById('user').value === "nazim" && document.getElementById('pass').value === "nazim") {
                 document.getElementById('login-screen').style.display = 'none';
                 document.getElementById('main-panel').style.display = 'block';
-            } else {
-                document.getElementById('error-msg').style.display = 'block';
-                document.getElementById('lBox').classList.add('error-shake');
-                setTimeout(() => document.getElementById('lBox').classList.remove('error-shake'), 400);
             }
         }
 
-        // কার্সার
         if (window.innerWidth > 768) {
             const cursor = document.getElementById('cursor');
             const cursorOutline = document.getElementById('cursor-outline');
