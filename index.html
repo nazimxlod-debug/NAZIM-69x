@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NAZIMXLIVE | RGB Premium Access</title>
+    <title>NAZIMXLIVE | RGB Premium Admin</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
     <style>
-        :root { --main: #ff6600; --bg: #050505; }
+        :root { --main: #ff6600; --bg: #050505; --error: #ff0000; }
         
-        /* আরজিবি এনিমেশন */
+        /* RGB Animations */
         @keyframes rgbText {
             0% { color: #ff0000; text-shadow: 0 0 10px #ff0000; }
             33% { color: #00ff00; text-shadow: 0 0 10px #00ff00; }
@@ -23,72 +23,62 @@
             100% { border-color: #ff0000; box-shadow: 0 0 15px #ff000044; }
         }
 
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
         * { cursor: none !important; }
-        #cursor { width: 10px; height: 10px; background: white; border-radius: 50%; position: fixed; pointer-events: none; z-index: 100000; box-shadow: 0 0 15px white; }
+        #cursor { width: 10px; height: 10px; background: white; border-radius: 50%; position: fixed; pointer-events: none; z-index: 100000; }
         #cursor-outline { width: 35px; height: 35px; border: 1px solid white; border-radius: 50%; position: fixed; pointer-events: none; z-index: 99999; transition: 0.15s ease-out; }
 
         body { background: var(--bg); color: white; font-family: 'Poppins', sans-serif; margin: 0; overflow-x: hidden; }
 
-        /* লগইন স্ক্রিন */
+        /* Login Screen */
         #login-screen { 
             height: 100vh; display: flex; justify-content: center; align-items: center; 
-            padding: 20px; background: black;
+            padding: 20px; background: #000;
         }
         .login-box { 
             background: rgba(10, 10, 10, 0.95); padding: 40px; border-radius: 20px; 
             border: 2px solid #333; text-align: center; 
             width: 100%; max-width: 380px; box-shadow: 0 0 50px rgba(0,0,0,1);
-            animation: rgbBorder 5s linear infinite; /* বক্সের বর্ডারে আরজিবি */
+            animation: rgbBorder 5s linear infinite;
+            transition: 0.3s;
         }
         
-        /* আরজিবি টেক্সট */
-        .rgb-title { 
-            font-family: 'Orbitron'; 
-            font-size: 26px; 
-            letter-spacing: 5px; 
-            margin-bottom: 30px; 
-            animation: rgbText 5s linear infinite; 
-        }
+        .login-box.error-shake { animation: shake 0.2s ease-in-out 2; border-color: var(--error); }
+
+        .rgb-title { font-family: 'Orbitron'; font-size: 26px; letter-spacing: 5px; margin-bottom: 30px; animation: rgbText 5s linear infinite; }
 
         input { 
             width: 100%; padding: 14px; margin-bottom: 20px; background: #000; 
             border: 1px solid #333; color: white; border-radius: 10px; 
-            font-family: 'Orbitron'; outline: none; box-sizing: border-box;
-            transition: 0.3s;
+            font-family: 'Orbitron'; outline: none; box-sizing: border-box; text-align: center;
         }
-        /* ইনপুট সিলেক্ট করলে আরজিবি হবে */
-        input:focus {
-            animation: rgbBorder 2s linear infinite;
-            background: #050505;
+        input:focus { animation: rgbBorder 2s linear infinite; background: #050505; }
+
+        /* Error Message Style */
+        #error-msg { 
+            color: var(--error); font-family: 'Orbitron'; font-size: 10px; 
+            margin-top: -10px; margin-bottom: 15px; display: none;
+            text-shadow: 0 0 5px var(--error);
         }
-
-        /* মেইন ড্যাশবোর্ড */
-        #main-panel { display: none; padding: 40px 15px; text-align: center; }
-        .profile-img { width: 140px; height: 140px; border-radius: 50%; border: 3px solid var(--main); box-shadow: 0 0 30px var(--main); object-fit: cover; margin-bottom: 15px; }
-
-        .social-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; max-width: 900px; margin: 30px auto; }
-        .card { background: rgba(255,255,255,0.05); padding: 20px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.1); text-decoration: none; color: white; font-family: 'Orbitron'; font-size: 12px; transition: 0.4s; }
-        .card:hover { border-color: var(--main); background: rgba(255, 102, 0, 0.1); transform: translateY(-5px); }
 
         .btn-main {
             background: white; color: black; border: none; padding: 15px 40px; 
-            font-family: 'Orbitron'; font-weight: bold; border-radius: 8px; cursor: pointer; transition: 0.3s;
+            font-family: 'Orbitron'; font-weight: bold; border-radius: 8px; cursor: pointer; width: 100%;
         }
-        .btn-main:hover { background: var(--main); color: white; box-shadow: 0 0 20px var(--main); }
 
-        /* পপ-আপ টাইমার */
-        #popup { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 1000000; justify-content: center; align-items: center; padding: 20px; }
-        .popup-content { text-align: center; border: 1px solid var(--main); padding: 40px; border-radius: 25px; background: #000; width: 100%; max-width: 450px; }
-        .timer-grid { display: flex; justify-content: center; gap: 15px; margin: 25px 0; }
-        .t-box { background: #111; padding: 15px; border-radius: 10px; min-width: 70px; border-bottom: 3px solid var(--main); }
-        .t-box span { display: block; font-size: 28px; font-family: 'Orbitron'; color: var(--main); font-weight: bold; }
+        /* Dashboard Styles */
+        #main-panel { display: none; padding: 40px 15px; text-align: center; }
+        .profile-img { width: 130px; height: 130px; border-radius: 50%; border: 3px solid var(--main); box-shadow: 0 0 30px var(--main); object-fit: cover; margin-bottom: 15px; }
+        .social-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; max-width: 900px; margin: 30px auto; }
+        .card { background: rgba(255,255,255,0.05); padding: 20px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.1); text-decoration: none; color: white; font-family: 'Orbitron'; font-size: 11px; transition: 0.3s; }
+        .card:hover { border-color: var(--main); background: rgba(255,102,0,0.1); }
 
-        @media (max-width: 768px) {
-            .social-grid { grid-template-columns: repeat(2, 1fr); }
-            #cursor, #cursor-outline { display: none; }
-            * { cursor: auto !important; }
-        }
-        @media (max-width: 480px) { .social-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 768px) { #cursor, #cursor-outline { display: none; } * { cursor: auto !important; } }
     </style>
 </head>
 <body>
@@ -97,47 +87,35 @@
     <div id="cursor-outline"></div>
 
     <div id="login-screen">
-        <div class="login-box">
+        <div class="login-box" id="lBox">
             <div class="rgb-title">ACCESS PANEL</div>
             <input type="text" id="user" placeholder="USERNAME" autocomplete="off">
             <input type="password" id="pass" placeholder="PASSWORD">
-            <button class="btn-main" style="width: 100%;" onclick="startSystem()">ENTER ARENA</button>
+            
+            <div id="error-msg">INVALID ACCESS KEY! TRY AGAIN</div>
+            
+            <button class="btn-main" onclick="startSystem()">INITIALIZE</button>
         </div>
     </div>
 
     <div id="main-panel">
-        <img src="profile.jpg" class="profile-img" alt="Nazim Profile">
-        <h2 style="font-family: 'Orbitron'; margin:0; letter-spacing: 5px;">NAZIM <span style="color:var(--main)">XLIVE</span></h2>
+        <img src="profile.jpg" class="profile-img" alt="Nazim">
+        <h2 style="font-family: 'Orbitron'; letter-spacing: 5px;">NAZIM <span style="color:var(--main)">XLIVE</span></h2>
         
         <div class="social-grid">
-            <a href="javascript:void(0)" class="card" onclick="openPop()">MY GAMES</a>
             <a href="https://www.youtube.com/@XTR_NAZIM" target="_blank" class="card">YOUTUBE</a>
             <a href="https://www.facebook.com/nazimontop" target="_blank" class="card">FACEBOOK</a>
             <a href="https://wa.me/8801XXXXXXXXX" target="_blank" class="card">WHATSAPP</a>
-            <a href="https://www.tiktok.com/@esports_x_logo" target="_blank" class="card">TIKTOK</a>
             <a href="#" class="card" onclick="location.reload()">LOGOUT</a>
         </div>
-
-        <div style="width:100%; max-width:700px; margin:40px auto; border-radius:20px; overflow:hidden; border:1px solid #333;">
-            <iframe width="100%" height="400" src="https://www.youtube.com/embed/phep1mEYH7E" frameborder="0" allowfullscreen></iframe>
-        </div>
-    </div>
-
-    <div id="popup">
-        <div class="popup-content">
-            <h2 style="font-family: 'Orbitron'; color: var(--main); font-size: 20px;">DEPLOYING IN</h2>
-            <div class="timer-grid">
-                <div class="t-box"><span id="dd">00</span><label>Days</label></div>
-                <div class="t-box"><span id="hh">00</span><label>Hours</label></div>
-                <div class="t-box"><span id="mm">00</span><label>Mins</label></div>
-                <div class="t-box"><span id="ss">00</span><label>Secs</label></div>
-            </div>
-            <button class="btn-main" onclick="closePop()">CLOSE</button>
+        
+        <div style="width:100%; max-width:700px; margin:auto; border:1px solid #333; border-radius:20px; overflow:hidden;">
+            <iframe width="100%" height="350" src="https://www.youtube.com/embed/phep1mEYH7E" frameborder="0" allowfullscreen></iframe>
         </div>
     </div>
 
     <script>
-        // কার্সার
+        // Cursor Logic
         if (window.innerWidth > 768) {
             const cursor = document.getElementById('cursor');
             const cursorOutline = document.getElementById('cursor-outline');
@@ -147,30 +125,27 @@
             });
         }
 
-        // লগইন (nazim / nazim)
+        // Login Function (nazim / nazim)
         function startSystem() {
             const u = document.getElementById('user').value;
             const p = document.getElementById('pass').value;
+            const errorMsg = document.getElementById('error-msg');
+            const lBox = document.getElementById('lBox');
+
             if(u === "nazim" && p === "nazim") {
                 document.getElementById('login-screen').style.display = 'none';
                 document.getElementById('main-panel').style.display = 'block';
-            } else { alert("ACCESS DENIED!"); }
-        }
-
-        function openPop() { document.getElementById('popup').style.display = 'flex'; }
-        function closePop() { document.getElementById('popup').style.display = 'none'; }
-
-        // টাইমার (২৩ ডিসেম্বর ২০২৫)
-        const target = new Date("2025-12-23T00:00:00").getTime();
-        setInterval(() => {
-            const diff = target - new Date().getTime();
-            if(diff > 0) {
-                document.getElementById('dd').innerText = Math.floor(diff / 86400000);
-                document.getElementById('hh').innerText = Math.floor((diff % 86400000) / 3600000);
-                document.getElementById('mm').innerText = Math.floor((diff % 3600000) / 60000);
-                document.getElementById('ss').innerText = Math.floor((diff % 60000) / 1000);
+            } else {
+                // পপ-আপ না এসে এখানে মেসেজ দেখাবে
+                errorMsg.style.display = 'block';
+                lBox.classList.add('error-shake');
+                
+                // ২ সেকেন্ড পর লাল ভাব চলে যাবে কিন্তু মেসেজ থাকবে
+                setTimeout(() => {
+                    lBox.classList.remove('error-shake');
+                }, 500);
             }
-        }, 1000);
+        }
     </script>
 </body>
 </html>
