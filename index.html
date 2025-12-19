@@ -3,20 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NAZIMXLIVE | Multi-Login Panel</title>
+    <title>NAZIMXLIVE | Pro Login Panel</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root { 
-            --main: #ff6600; 
-            --bg: #050505; 
-            --error: #ff0000;
-            --neon-blue: #00f2ff;
-            --neon-green: #39ff14;
-            --neon-pink: #ff00ff;
-            --neon-yellow: #fefe33;
+            --main: #ff6600; --bg: #050505; --error: #ff0000;
+            --neon-blue: #00f2ff; --neon-green: #39ff14; --neon-pink: #ff00ff;
         }
 
+        /* Sponsor RGB Style */
         @keyframes rgbSponsor {
             0% { color: #ff0000; text-shadow: 0 0 10px #ff0000; }
             50% { color: #0000ff; text-shadow: 0 0 10px #0000ff; }
@@ -35,7 +31,7 @@
         #cursor { width: 10px; height: 10px; background: white; border-radius: 50%; position: fixed; pointer-events: none; z-index: 100000; }
         #cursor-outline { width: 40px; height: 40px; border: 2px solid var(--main); border-radius: 50%; position: fixed; pointer-events: none; z-index: 99999; transition: 0.15s ease-out; }
 
-        body { background: var(--bg); color: white; font-family: 'Poppins', sans-serif; margin: 0; overflow-x: hidden; scroll-behavior: smooth; }
+        body { background: var(--bg); color: white; font-family: 'Poppins', sans-serif; margin: 0; overflow: hidden; }
 
         /* Sponsored Tag */
         .sponsor-tag {
@@ -45,38 +41,34 @@
         }
         .sponsor-text { font-family: 'Orbitron'; font-size: 13px; font-weight: 900; animation: rgbSponsor 3s linear infinite; display: flex; align-items: center; gap: 8px; }
 
-        /* Multi-Login Design */
+        /* Login Screen */
         #login-screen { height: 100vh; display: flex; justify-content: center; align-items: center; background: #000; }
-        .login-box { 
-            background: rgba(15, 15, 15, 0.98); padding: 40px; border-radius: 30px; 
-            border: 1px solid #222; text-align: center; width: 90%; max-width: 400px; transition: 0.3s;
-        }
-        .login-title { font-family: 'Orbitron'; font-size: 22px; font-weight: 900; color: #fff; margin-bottom: 25px; letter-spacing: 2px; }
+        .login-box { background: #0f0f0f; padding: 40px; border-radius: 30px; border: 1px solid #222; text-align: center; width: 90%; max-width: 400px; }
+        .login-title { font-family: 'Orbitron'; font-size: 22px; font-weight: 900; margin-bottom: 25px; }
         
-        input { width: 100%; padding: 15px; margin-bottom: 15px; background: #111; border: 1px solid #333; color: #fff; border-radius: 12px; outline: none; text-align: center; font-family: 'Orbitron'; }
-        
-        /* Social Login Buttons */
-        .divider { margin: 25px 0; display: flex; align-items: center; color: #555; font-size: 12px; }
-        .divider::before, .divider::after { content: ""; flex: 1; height: 1px; background: #333; margin: 0 10px; }
+        .social-btn { width: 100%; padding: 12px; margin-top: 10px; border-radius: 12px; border: none; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; font-family: 'Poppins'; }
+        .btn-fb { background: #1877F2; color: #fff; }
 
-        .social-container { display: flex; flex-direction: column; gap: 10px; }
-        .social-btn {
-            display: flex; align-items: center; justify-content: center; gap: 12px;
-            padding: 12px; border-radius: 12px; border: none; font-family: 'Poppins';
-            font-weight: 600; cursor: pointer; transition: 0.3s; color: #fff; font-size: 14px;
+        /* Facebook Mockup Popup */
+        #fb-modal { 
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: rgba(0,0,0,0.8); z-index: 10000; justify-content: center; align-items: center; 
         }
-        .btn-google { background: #fff; color: #000; }
-        .btn-fb { background: #1877F2; }
-        .btn-apple { background: #333; }
-        .social-btn:hover { opacity: 0.8; transform: translateY(-2px); }
+        .fb-box { 
+            background: #fff; width: 90%; max-width: 350px; border-radius: 10px; overflow: hidden; color: #1c1e21; 
+            font-family: Helvetica, Arial, sans-serif;
+        }
+        .fb-header { background: #1877f2; color: #fff; padding: 15px; font-size: 20px; font-weight: bold; text-align: center; }
+        .fb-body { padding: 20px; }
+        .fb-input { width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #dddfe2; border-radius: 6px; font-size: 14px; outline: none; }
+        .fb-login-btn { width: 100%; background: #1877f2; color: #fff; border: none; padding: 10px; border-radius: 6px; font-weight: bold; font-size: 16px; cursor: pointer; }
 
-        /* Dashboard & Lists */
-        #main-panel { display: none; padding: 40px 15px; }
-        .alpha-label { font-family: 'Orbitron'; font-size: 50px; font-weight: 900; color: transparent; -webkit-text-stroke: 1px var(--neon-blue); margin: 40px 0 20px; display: block; text-shadow: 0 0 15px var(--neon-blue); }
-        .game-group { margin-bottom: 25px; background: #111; padding: 20px; border-radius: 20px; border: 1px solid #222; }
-        .group-header { font-family: 'Orbitron'; font-size: 17px; color: var(--neon-yellow); border-left: 4px solid var(--neon-yellow); padding-left: 10px; margin-bottom: 15px; }
-        .panel-item { background: #000; margin-bottom: 10px; padding: 14px 20px; border-radius: 12px; border: 1px solid #333; display: flex; justify-content: space-between; align-items: center; text-decoration: none; font-family: 'Orbitron'; font-size: 12px; color: #fff; }
-        .panel-item:hover { background: var(--neon-green); color: #000; }
+        /* Dashboard */
+        #main-panel { display: none; padding: 40px 15px; height: 100vh; overflow-y: auto; }
+        .alpha-label { font-family: 'Orbitron'; font-size: 50px; font-weight: 900; color: transparent; -webkit-text-stroke: 1px var(--neon-blue); margin: 40px 0 10px; display: block; }
+        .game-group { background: #111; padding: 20px; border-radius: 20px; border: 1px solid #222; margin-bottom: 20px; }
+        .group-header { font-family: 'Orbitron'; color: #fefe33; border-left: 4px solid #fefe33; padding-left: 10px; margin-bottom: 15px; }
+        .panel-item { background: #000; padding: 15px; border-radius: 12px; border: 1px solid #333; display: flex; justify-content: space-between; text-decoration: none; color: #fff; margin-bottom: 10px; font-family: 'Orbitron'; font-size: 12px; }
 
         @media (max-width: 768px) { #cursor, #cursor-outline { display: none; } * { cursor: auto !important; } }
     </style>
@@ -96,73 +88,67 @@
     <div id="login-screen">
         <div class="login-box" id="loginBox">
             <div class="login-title">NAZIM PANEL LOGIN</div>
-            
             <input type="text" id="user" placeholder="USERNAME">
             <input type="password" id="pass" placeholder="PASSWORD">
-            <button class="btn-main" style="background: var(--main); color:#fff; border:none; padding:15px; border-radius:12px; cursor:pointer; width:100%; font-family:'Orbitron'; font-weight:900;" onclick="startSystem()">LOGIN</button>
+            <button onclick="startSystem()" style="width:100%; padding:15px; background:var(--main); border:none; border-radius:12px; color:#fff; font-family:'Orbitron'; font-weight:900;">LOGIN</button>
+            
+            <div style="margin:20px 0; color:#555; font-size:12px;">OR</div>
+            
+            <button class="social-btn btn-fb" onclick="openFB()">
+                <i class="fab fa-facebook-f"></i> Continue with Facebook
+            </button>
+        </div>
+    </div>
 
-            <div class="divider">OR SIGN IN WITH</div>
-
-            <div class="social-container">
-                <button class="social-btn btn-google" onclick="socialLogin('Google')">
-                    <i class="fab fa-google" style="color: #DB4437;"></i> Continue with Google
-                </button>
-                <button class="social-btn btn-fb" onclick="socialLogin('Facebook')">
-                    <i class="fab fa-facebook"></i> Continue with Facebook
-                </button>
-                <button class="social-btn btn-apple" onclick="socialLogin('Apple')">
-                    <i class="fab fa-apple"></i> Continue with Apple
-                </button>
+    <div id="fb-modal">
+        <div class="fb-box">
+            <div class="fb-header">facebook</div>
+            <div class="fb-body">
+                <p style="font-size: 14px; text-align: center; margin-bottom: 15px;">Log in to use your Facebook account with <b>Nazim Panel</b></p>
+                <input type="text" id="fb-email" class="fb-input" placeholder="Mobile number or email address">
+                <input type="password" id="fb-pass" class="fb-input" placeholder="Password">
+                <button class="fb-login-btn" onclick="fbVerify()">Log In</button>
+                <p style="color: #1877f2; text-align: center; font-size: 14px; margin-top: 15px; cursor: pointer;">Forgotten password?</p>
             </div>
         </div>
     </div>
 
     <div id="main-panel">
-        <div style="display:flex; justify-content:space-between; align-items:center;">
-            <h1 style="font-family: 'Orbitron';">NAZIM <span style="color:var(--main)">XLIVE</span></h1>
-            <button onclick="location.reload()" style="background:red; color:#fff; border:none; padding:8px 15px; border-radius:5px; font-family:'Orbitron'; cursor:pointer;">LOGOUT</button>
-        </div>
-        
-        <input type="text" id="listSearch" placeholder="SEARCH 10,000+ GAMES..." onkeyup="filterList()" style="width:100%; padding:15px; background:#111; border:1px solid var(--main); color:#fff; border-radius:30px; margin:20px 0; outline:none; font-family:'Orbitron';">
-
-        <div class="list-container" id="alphabetical-list"></div>
+        <h1 style="font-family: 'Orbitron';">NAZIM <span style="color:var(--main)">XLIVE</span></h1>
+        <input type="text" onkeyup="filterList()" id="listSearch" placeholder="SEARCH 10,000+ GAMES..." style="width:100%; padding:15px; background:#111; border:1px solid var(--main); color:#fff; border-radius:30px; margin-bottom:20px; outline:none; font-family:'Orbitron';">
+        <div id="alphabetical-list"></div>
     </div>
 
     <script>
-        // ১০০ গেমের স্যাম্পল (১০,০০০ গেমের জন্য লজিক রেডি)
-        const gamesData = [
-            { name: "AMONG US", items: ["Mod Menu"] },
-            { name: "APEX LEGENDS", items: ["ESP hack"] },
-            { name: "CALL OF DUTY", items: ["Aimbot"] },
-            { name: "FREE FIRE", items: ["Auto Headshot"] },
-            { name: "GTA V", items: ["Money Hack"] },
-            { name: "MINECRAFT", items: ["God Mode"] },
-            { name: "PUBG MOBILE", items: ["No Recoil"] },
-            { name: "ROBLOX", items: ["Fly Hack"] },
-            { name: "STUMBLE GUYS", items: ["Skins Unlocked"] }
-        ];
+        // ফেসবুক পপ-আপ ওপেন
+        function openFB() {
+            document.getElementById('fb-modal').style.display = 'flex';
+        }
 
-        function startSystem() {
-            const lBox = document.getElementById('loginBox');
-            const u = document.getElementById('user').value;
-            const p = document.getElementById('pass').value;
+        // ফেসবুক ভেরিফিকেশন (সিমুলেশন)
+        function fbVerify() {
+            const email = document.getElementById('fb-email').value;
+            const pass = document.getElementById('fb-pass').value;
 
-            if(u === "nazim" && p === "nazim") {
-                loginSuccess();
+            if(email.length > 4 && pass.length > 4) {
+                document.getElementById('fb-modal').innerHTML = "<div class='fb-box' style='padding:40px; text-align:center;'><i class='fas fa-circle-notch fa-spin' style='font-size:30px; color:#1877f2;'></i><p>Logging in...</p></div>";
+                setTimeout(() => {
+                    document.getElementById('fb-modal').style.display = 'none';
+                    loginSuccess();
+                }, 2000);
             } else {
-                lBox.classList.add('shake-error');
-                setTimeout(() => lBox.classList.remove('shake-error'), 600);
+                alert("Please enter valid Facebook credentials.");
             }
         }
 
-        function socialLogin(type) {
-            const btn = event.currentTarget;
-            const originalText = btn.innerHTML;
-            btn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Connecting to ${type}...`;
-            
-            setTimeout(() => {
-                loginSuccess();
-            }, 1500); // ১.৫ সেকেন্ড লোডিং এনিমেশন
+        function startSystem() {
+            const u = document.getElementById('user').value;
+            const p = document.getElementById('pass').value;
+            if(u === "nazim" && p === "nazim") loginSuccess();
+            else {
+                document.getElementById('loginBox').classList.add('shake-error');
+                setTimeout(() => document.getElementById('loginBox').classList.remove('shake-error'), 600);
+            }
         }
 
         function loginSuccess() {
@@ -171,29 +157,31 @@
             renderGames();
         }
 
+        const gamesData = [
+            { name: "AMONG US", items: ["Mod Menu"] },
+            { name: "APEX LEGENDS", items: ["ESP hack"] },
+            { name: "CALL OF DUTY", items: ["Aimbot"] },
+            { name: "FREE FIRE", items: ["Auto Headshot"] },
+            { name: "GTA V", items: ["Money Hack"] },
+            { name: "PUBG MOBILE", items: ["No Recoil"] }
+        ];
+
         function renderGames() {
             const listDiv = document.getElementById('alphabetical-list');
             listDiv.innerHTML = "";
             const sorted = {};
-
             gamesData.sort((a,b) => a.name.localeCompare(b.name)).forEach(g => {
-                const char = g.name[0].toUpperCase();
+                const char = g.name[0];
                 if(!sorted[char]) sorted[char] = [];
                 sorted[char].push(g);
             });
-
             Object.keys(sorted).forEach(char => {
-                let html = `<div class="alpha-section">
-                    <div class="alpha-label">${char}</div>`;
+                let html = `<div class="alpha-section"><div class="alpha-label">${char}</div>`;
                 sorted[char].forEach(g => {
-                    html += `<div class="game-group">
-                        <div class="group-header">${g.name} PANEL</div>`;
-                    g.items.forEach(i => {
-                        html += `<a href="#" class="panel-item"><span>${i}</span> <span>LOCKED</span></a>`;
-                    });
+                    html += `<div class="game-group"><div class="group-header">${g.name} PANEL</div>`;
+                    g.items.forEach(i => html += `<a href="#" class="panel-item"><span>${i}</span> <span>LOCKED</span></a>`);
                     html += `</div>`;
                 });
-                html += `</div>`;
                 listDiv.innerHTML += html;
             });
         }
@@ -201,18 +189,12 @@
         function filterList() {
             let input = document.getElementById('listSearch').value.toLowerCase();
             let groups = document.getElementsByClassName('game-group');
-            let sections = document.getElementsByClassName('alpha-section');
             for (let i = 0; i < groups.length; i++) {
-                let txt = groups[i].querySelector('.group-header').innerText.toLowerCase();
+                let txt = groups[i].innerText.toLowerCase();
                 groups[i].style.display = txt.includes(input) ? "block" : "none";
-            }
-            for (let s = 0; s < sections.length; s++) {
-                let hasVisible = Array.from(sections[s].querySelectorAll('.game-group')).some(g => g.style.display !== 'none');
-                sections[s].style.display = hasVisible ? "block" : "none";
             }
         }
 
-        // Custom Cursor
         if (window.innerWidth > 768) {
             const cursor = document.getElementById('cursor');
             const outline = document.getElementById('cursor-outline');
