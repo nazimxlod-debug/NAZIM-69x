@@ -3,116 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ALIF ALEX STAR | TikTok Booster</title>
-    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/1053/1053210.png">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <title>ZEFOY | Free Social Media Tools</title>
+    <link rel="icon" type="image/png" href="https://zefoy.com/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        :root { --main: #ff6600; --neon: #00f2ff; --bg: #050505; }
-        body { background: var(--bg); color: white; font-family: 'Poppins', sans-serif; margin: 0; text-align: center; }
+        :root { --main-blue: #3498db; --bg-gray: #f4f7f6; --text-dark: #2c3e50; }
+        body { background: var(--bg-gray); color: var(--text-dark); font-family: 'Poppins', sans-serif; margin: 0; }
         
-        /* Header & Branding */
-        .header { padding: 40px 20px; background: linear-gradient(to bottom, #111, transparent); }
-        .header h1 { font-family: 'Orbitron'; font-size: 32px; color: var(--main); text-shadow: 0 0 15px var(--main); margin: 0; }
-        .header p { color: var(--neon); font-size: 14px; letter-spacing: 2px; margin-top: 5px; }
+        /* ক্লিন এবং প্রফেশনাল হেডার */
+        .header { background: #34495e; padding: 15px 0; color: white; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .header h1 { margin: 0; font-size: 24px; letter-spacing: 1px; }
 
-        /* ZEFOy Style Cards */
-        .main-container { padding: 20px; display: flex; flex-direction: column; align-items: center; gap: 15px; }
-        .service-card { 
-            background: #111; width: 100%; max-width: 450px; padding: 20px; 
-            border-radius: 12px; border: 1px solid #222; display: flex; 
-            justify-content: space-between; align-items: center; transition: 0.3s;
+        .navbar { background: #fff; padding: 10px 20px; display: flex; justify-content: center; gap: 20px; font-size: 14px; border-bottom: 1px solid #ddd; }
+        .navbar a { text-decoration: none; color: #555; font-weight: 600; }
+
+        /* অরিজিনাল কার্ড লেআউট */
+        .container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; padding: 30px; max-width: 1000px; margin: 0 auto; }
+        
+        .card { 
+            background: white; border-radius: 4px; padding: 20px; 
+            text-align: center; border: 1px solid #e0e0e0; transition: 0.2s;
         }
-        .service-card:hover { border-color: var(--neon); box-shadow: 0 0 15px rgba(0,242,255,0.1); }
-        .service-info h3 { margin: 0; font-size: 18px; font-family: 'Orbitron'; }
-        .status-active { color: #39ff14; font-size: 11px; font-weight: bold; }
-
-        /* Action Button */
-        .btn-use { 
-            background: var(--main); color: white; border: none; 
-            padding: 10px 25px; border-radius: 6px; font-weight: bold; 
-            cursor: pointer; font-family: 'Orbitron'; transition: 0.3s;
+        .card:hover { box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .card h3 { margin: 0 0 15px 0; font-size: 18px; font-weight: 400; }
+        
+        /* স্ট্যাটাস আপডেট সিস্টেম */
+        .btn-go { 
+            width: 100%; background: #5dade2; color: white; border: none; 
+            padding: 10px; border-radius: 4px; font-size: 18px; cursor: pointer; 
         }
-        .btn-use:hover { background: #e65c00; transform: scale(1.05); }
+        .status-text { 
+            display: inline-block; margin-top: 10px; padding: 2px 8px; 
+            font-size: 11px; border-radius: 3px; font-weight: bold;
+        }
+        .active { background: #f1c40f; color: #000; }
+        .soon { background: #e74c3c; color: white; }
 
-        /* Loader Section */
-        #loader-box { display: none; margin-top: 20px; }
-        .timer { font-size: 24px; color: var(--neon); font-family: 'Orbitron'; }
-
-        /* Sponsored Footer */
-        .footer { position: fixed; bottom: 20px; width: 100%; font-size: 12px; color: #444; }
-        .footer span { color: var(--main); font-weight: bold; }
+        .footer { text-align: center; padding: 20px; color: #888; font-size: 12px; }
     </style>
 </head>
 <body>
 
     <div class="header">
-        <h1>ALIF ALEX <span style="color:white">STAR</span></h1>
-        <p>TIKTOK AUTOMATION V1</p>
+        <h1>ZEFOY</h1>
     </div>
 
-    <div class="main-container">
-        <div class="service-card">
-            <div class="service-info">
-                <h3>TikTok Likes</h3>
-                <span class="status-active">● ONLINE</span>
-            </div>
-            <button class="btn-use" onclick="startLikes()">USE</button>
+    <div class="navbar">
+        <a href="#">Home</a>
+        <a href="#">Terms</a>
+        <a href="#">Privacy</a>
+        <a href="#">Contact</a>
+    </div>
+
+    <div class="container">
+        <div class="card">
+            <h3>Followers</h3>
+            <button class="btn-go" disabled>→</button>
+            <div class="status-text soon">soon will be update</div>
         </div>
 
-        <div class="service-card" style="opacity: 0.6;">
-            <div class="service-info">
-                <h3>TikTok Followers</h3>
-                <span style="color: red; font-size: 11px;">● UPDATING</span>
-            </div>
-            <button class="btn-use" style="background: #333; cursor: not-allowed;" disabled>OFFLINE</button>
+        <div class="card">
+            <h3>Hearts</h3>
+            <button class="btn-go" onclick="openService('Hearts')">→</button>
+            <div class="status-text active">1 week ago updated</div>
         </div>
 
-        <div id="action-box" style="display:none; margin-top: 30px; width: 90%; max-width: 400px;">
-            <input type="text" id="videoLink" placeholder="Paste Video Link Here" 
-                style="width: 100%; padding: 15px; background: #111; border: 1px solid var(--neon); color: white; border-radius: 8px; text-align: center; outline: none;">
-            <button class="btn-use" style="width: 100%; margin-top: 15px;" onclick="processRequest()">GET LIKES</button>
-        </div>
-
-        <div id="loader-box">
-            <p>Please wait for next submission...</p>
-            <div class="timer" id="timer">00:59</div>
+        <div class="card">
+            <h3>Views</h3>
+            <button class="btn-go" disabled>→</button>
+            <div class="status-text soon">soon will be update</div>
         </div>
     </div>
 
     <div class="footer">
-        SPONSORED BY <span>ALIF ALEX STAR</span>
+        &copy; 2025 Zefoy - All rights reserved.
     </div>
 
     <script>
-        function startLikes() {
-            document.querySelector('.main-container').style.display = 'none';
-            document.getElementById('action-box').style.display = 'block';
-            document.querySelector('.main-container').style.display = 'flex';
-        }
-
-        function processRequest() {
-            let link = document.getElementById('videoLink').value;
-            if(link.includes("tiktok.com")) {
-                document.getElementById('action-box').style.display = 'none';
-                document.getElementById('loader-box').style.display = 'block';
-                startTimer(59);
-            } else {
-                alert("Please enter a valid TikTok video link!");
-            }
-        }
-
-        function startTimer(seconds) {
-            let counter = seconds;
-            let interval = setInterval(() => {
-                let sec = counter < 10 ? "0" + counter : counter;
-                document.getElementById('timer').innerHTML = "00:" + sec;
-                counter--;
-                if (counter < 0) {
-                    clearInterval(interval);
-                    alert("Success! 25 Likes Sent to your video.");
-                    location.reload();
-                }
-            }, 1000);
+        function openService(name) {
+            let url = prompt("Enter Video URL:");
+            if(url) alert("Searching for " + name + "...");
         }
     </script>
 </body>
