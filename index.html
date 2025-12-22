@@ -3,221 +3,315 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XTR NAZIM | YouTube Clone</title>
+    <title>XTR NAZIM | Infinite Billion Content System</title>
     <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/1384/1384060.png">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Hind+Siliguri:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Hind+Siliguri:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
+        /* CSS সেকশন আমরা অনেক বড় এবং ডিটেইলড করেছি */
         :root {
-            --bg-black: #0f0f0f;
-            --sidebar-bg: #0f0f0f;
+            --yt-main: #0f0f0f;
+            --yt-sidebar: #0f0f0f;
             --yt-red: #ff0000;
-            --text-white: #f1f1f1;
-            --hover-gray: #272727;
+            --yt-white: #f1f1f1;
+            --yt-gray: #aaaaaa;
+            --yt-hover: #272727;
+            --yt-border: #333333;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
         body {
-            background-color: var(--bg-black);
-            color: var(--text-white);
+            background-color: var(--yt-main);
+            color: var(--yt-white);
             font-family: 'Roboto', 'Hind Siliguri', sans-serif;
             margin: 0;
+            overflow: hidden;
             display: flex;
             flex-direction: column;
             height: 100vh;
         }
 
-        /* --- হেডার সেকশন --- */
-        header {
+        /* প্রিমিয়াম নেভিগেশন */
+        .top-nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 20px;
-            background: var(--bg-black);
+            padding: 0 20px;
+            height: 60px;
+            background: var(--yt-main);
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 2000;
         }
 
-        .logo-box { display: flex; align-items: center; gap: 15px; cursor: pointer; }
-        .logo-box i { color: var(--yt-red); font-size: 28px; }
-        .logo-box h1 { font-size: 20px; letter-spacing: -1px; margin: 0; }
+        .nav-left { display: flex; align-items: center; gap: 20px; }
+        .menu-icon { font-size: 20px; cursor: pointer; padding: 10px; border-radius: 50%; }
+        .menu-icon:hover { background: var(--yt-hover); }
+        .logo-box { display: flex; align-items: center; gap: 4px; text-decoration: none; color: white; }
+        .logo-box i { color: var(--yt-red); font-size: 30px; }
+        .logo-box h1 { font-size: 20px; letter-spacing: -1.2px; font-weight: 700; margin: 0; }
 
-        .search-box {
+        /* বিশাল সার্চ ইঞ্জিন ডিজাইন */
+        .nav-center { flex: 0 1 720px; display: flex; align-items: center; }
+        .search-group {
             display: flex;
-            align-items: center;
+            width: 100%;
             background: #121212;
-            border: 1px solid #333;
-            border-radius: 40px;
-            padding: 0 15px;
-            width: 40%;
+            border: 1px solid var(--yt-border);
+            border-radius: 40px 0 0 40px;
+            padding-left: 15px;
+            margin-left: 40px;
         }
-        .search-box input {
+        .search-group input {
             background: transparent;
             border: none;
             color: white;
             padding: 10px;
             width: 100%;
             outline: none;
+            font-size: 16px;
         }
-        .search-box i { color: #888; cursor: pointer; }
-
-        /* --- মেইন লেআউট --- */
-        .main-wrapper { display: flex; flex: 1; overflow: hidden; }
-
-        /* --- সাইডবার মেনু --- */
-        .sidebar {
-            width: 240px;
-            background: var(--sidebar-bg);
-            padding: 10px;
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            overflow-y: auto;
+        .search-btn {
+            background: #222;
+            border: 1px solid var(--yt-border);
+            border-left: none;
+            color: white;
+            padding: 0 20px;
+            border-radius: 0 40px 40px 0;
+            cursor: pointer;
+            font-size: 18px;
         }
-        .nav-item {
+        .mic-icon {
+            background: #181818;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
-            gap: 20px;
-            padding: 12px 15px;
+            justify-content: center;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        /* লেআউট কন্ট্রোল */
+        .master-container { display: flex; flex: 1; overflow: hidden; }
+
+        /* মেগা সাইডবার */
+        .mega-sidebar {
+            width: 240px;
+            background: var(--yt-sidebar);
+            overflow-y: auto;
+            padding: 10px;
+            transition: var(--transition);
+        }
+        .s-item {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            padding: 10px 12px;
             border-radius: 10px;
             cursor: pointer;
-            transition: 0.2s;
-            text-decoration: none;
             color: white;
+            text-decoration: none;
+            font-size: 14px;
+            margin-bottom: 2px;
         }
-        .nav-item:hover { background: var(--hover-gray); }
-        .nav-item i { font-size: 20px; width: 25px; text-align: center; }
-        .sidebar hr { border: 0; border-top: 1px solid #333; margin: 10px 0; }
+        .s-item:hover { background: var(--yt-hover); }
+        .s-item.active { background: var(--yt-hover); font-weight: 700; }
+        .s-item i { font-size: 20px; width: 24px; text-align: center; }
+        .s-sep { border: none; border-top: 1px solid var(--yt-border); margin: 12px 0; }
+        .s-title { padding: 10px 12px; font-size: 16px; font-weight: 700; color: #f1f1f1; }
 
-        /* --- কন্টেন্ট এরিয়া --- */
-        .content {
+        /* কোটি কোটি কন্টেন্ট ফিড */
+        .content-feed {
             flex: 1;
-            padding: 20px;
-            overflow-y: auto;
             background: #0f0f0f;
+            overflow-y: auto;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
         }
-
-        .video-grid {
+        .video-wall {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+            gap: 16px;
+            row-gap: 40px;
         }
 
-        .video-card { cursor: pointer; transition: 0.3s; }
-        .thumbnail {
+        /* প্রিমিয়াম ভিডিও কার্ড */
+        .video-box { cursor: pointer; transition: transform 0.2s; }
+        .video-box:hover { transform: scale(1.02); }
+        .v-thumb-wrap {
+            position: relative;
             width: 100%;
             aspect-ratio: 16/9;
-            background: #222;
             border-radius: 12px;
-            object-fit: cover;
-        }
-        .video-card:hover .thumbnail { border-radius: 0; transform: scale(1.02); }
-
-        .video-info { display: flex; gap: 12px; margin-top: 12px; }
-        .channel-img { width: 36px; height: 36px; background: #555; border-radius: 50%; }
-        .details h3 { margin: 0; font-size: 15px; line-height: 1.4; color: white; }
-        .details p { margin: 5px 0 0; font-size: 13px; color: #aaa; }
-
-        /* --- ভিডিও প্লেয়ার --- */
-        #player-container {
-            display: none;
-            margin-bottom: 30px;
-            width: 100%;
-            aspect-ratio: 16/9;
-            background: black;
-            border-radius: 15px;
             overflow: hidden;
+            background: #222;
         }
+        .v-thumb-wrap img { width: 100%; height: 100%; object-fit: cover; }
+        .v-time {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 3px 6px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        .v-data { display: flex; gap: 12px; margin-top: 12px; }
+        .v-chan-icon { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(45deg, #ff0000, #550000); flex-shrink: 0; }
+        .v-info h3 { margin: 0; font-size: 16px; line-height: 1.4; font-weight: 600; color: white; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .v-info p { margin: 4px 0 0; color: var(--yt-gray); font-size: 14px; }
+
+        /* ইনজেকশন লোডার */
+        #mass-loader { text-align: center; padding: 50px; color: var(--yt-red); font-size: 20px; font-weight: bold; }
+
+        /* প্লেয়ার মোড */
+        #player-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.95);
+            z-index: 9999;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .close-player { position: absolute; top: 20px; right: 30px; font-size: 40px; cursor: pointer; color: white; }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="logo-box" onclick="location.reload()">
-            <i class="fa-solid fa-bars" style="color: white; margin-right: 10px;"></i>
-            <i class="fab fa-youtube"></i>
-            <h1>YouTube <span style="font-weight: 300; font-size: 12px; vertical-align: top;">BD</span></h1>
+    <header class="top-nav">
+        <div class="nav-left">
+            <i class="fas fa-bars menu-icon"></i>
+            <a href="#" class="logo-box">
+                <i class="fab fa-youtube"></i>
+                <h1>YouTube <span>Nazim</span></h1>
+            </a>
         </div>
-        <div class="search-box">
-            <input type="text" placeholder="Search">
-            <i class="fa fa-search"></i>
+        <div class="nav-center">
+            <div class="search-group">
+                <input type="text" id="megaSearch" placeholder="কোটি কোটি ভিডিওর মাঝে খুঁজুন...">
+            </div>
+            <button class="search-btn" onclick="executeMegaSearch()"><i class="fas fa-search"></i></button>
+            <div class="mic-icon"><i class="fas fa-microphone"></i></div>
         </div>
-        <div class="user-icons">
-            <i class="fa fa-video" style="margin-right: 20px; cursor: pointer;"></i>
-            <i class="fa fa-bell" style="margin-right: 20px; cursor: pointer;"></i>
-            <i class="fa fa-user-circle" style="font-size: 24px; cursor: pointer;"></i>
+        <div class="nav-right" style="display: flex; gap: 20px; font-size: 20px; align-items: center;">
+            <i class="fas fa-video"></i><i class="fas fa-th"></i><i class="fas fa-bell"></i>
+            <div style="width: 32px; height: 32px; background: orange; border-radius: 50%;"></div>
         </div>
     </header>
 
-    <div class="main-wrapper">
-        <div class="sidebar">
-            <a href="#" class="nav-item"><i class="fa fa-home"></i> Home</a>
-            <a href="#" class="nav-item"><i class="fa-solid fa-bolt"></i> Shorts</a>
-            <a href="#" class="nav-item"><i class="fa fa-layer-group"></i> Subscriptions</a>
-            <hr>
-            <a href="#" class="nav-item"><i class="fa fa-history"></i> History</a>
-            <a href="#" class="nav-item"><i class="fa fa-clock"></i> Watch Later</a>
-            <a href="#" class="nav-item"><i class="fa fa-thumbs-up"></i> Liked Videos</a>
-            <hr>
-            <h4 style="padding-left: 15px; color: #aaa;">Subscriptions</h4>
-            <a href="https://www.youtube.com/@XTR_NAZIM" target="_blank" class="nav-item">
-                <div class="channel-img" style="width: 24px; height: 24px; background: red;"></div>
-                XTR NAZIM
-            </a>
-        </div>
+    <div class="master-container">
+        <aside class="mega-sidebar">
+            <a href="#" class="s-item active"><i class="fas fa-home"></i> Home</a>
+            <a href="#" class="s-item"><i class="fas fa-bolt"></i> Shorts</a>
+            <a href="#" class="s-item"><i class="fas fa-layer-group"></i> Subscriptions</a>
+            <hr class="s-sep">
+            <a href="#" class="s-item"><i class="fas fa-play-circle"></i> You</a>
+            <a href="#" class="s-item"><i class="fas fa-history"></i> History</a>
+            <hr class="s-sep">
+            <div class="s-title">Explore</div>
+            <a href="#" class="s-item"><i class="fas fa-fire"></i> Trending</a>
+            <a href="#" class="s-item"><i class="fas fa-shopping-bag"></i> Shopping</a>
+            <a href="#" class="s-item"><i class="fas fa-music"></i> Music</a>
+            <a href="#" class="s-item"><i class="fas fa-gamepad"></i> Gaming</a>
+            <a href="#" class="s-item"><i class="fas fa-newspaper"></i> News</a>
+            <a href="#" class="s-item"><i class="fas fa-trophy"></i> Sports</a>
+            <hr class="s-sep">
+            <div class="s-title">Subscriptions</div>
+            <a href="#" class="s-item"><div class="v-chan-icon" style="width:24px; height:24px;"></div> XTR NAZIM</a>
+        </aside>
 
-        <div class="content">
-            <div id="player-container">
-                <iframe id="ytPlayer" width="100%" height="100%" src="" frameborder="0" allowfullscreen></iframe>
-            </div>
-
-            <div class="video-grid">
-                <div class="video-card" onclick="playThis('yPYZpwSpKAg')">
-                    <img class="thumbnail" src="https://img.youtube.com/vi/yPYZpwSpKAg/maxresdefault.jpg">
-                    <div class="video-info">
-                        <div class="channel-img"></div>
-                        <div class="details">
-                            <h3>ZEFOY 2.0 Full Tutorial - XTR Nazim</h3>
-                            <p>XTR NAZIM • 1.2M views • 1 day ago</p>
-                        </div>
-                    </div>
+        <main class="content-feed" id="scrollContainer">
+            <div class="video-wall" id="videoWall">
                 </div>
+            <div id="mass-loader"><i class="fas fa-circle-notch fa-spin"></i> Loading Billion Content Engine...</div>
+        </main>
+    </div>
 
-                <div class="video-card" onclick="playThis('3JZ_D3ELwOQ')">
-                    <img class="thumbnail" src="https://img.youtube.com/vi/3JZ_D3ELwOQ/maxresdefault.jpg">
-                    <div class="video-info">
-                        <div class="channel-img"></div>
-                        <div class="details">
-                            <h3>How to make a website like YouTube</h3>
-                            <p>XTR NAZIM • 800K views • 3 days ago</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="video-card" onclick="playThis('dQw4w9WgXcQ')">
-                    <img class="thumbnail" src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg">
-                    <div class="video-info">
-                        <div class="channel-img"></div>
-                        <div class="details">
-                            <h3>Premium Panel Editing Tricks 2025</h3>
-                            <p>XTR NAZIM • 5M views • 1 week ago</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div id="player-modal">
+        <span class="close-player" onclick="exitPlayer()">&times;</span>
+        <div id="playerFrame" style="width: 85%; aspect-ratio: 16/9; background: #000; border-radius: 20px; overflow: hidden;"></div>
     </div>
 
     <script>
-        function playThis(videoId) {
-            const container = document.getElementById('player-container');
-            const player = document.getElementById('ytPlayer');
+        // কোটি কোটি ডাটার জন্য ডাইনামিক লাইব্রেরি
+        const videoDB = [
+            {id: "yPYZpwSpKAg", title: "XTR Nazim Special: Zefoy 2.0 Full Tutorial"},
+            {id: "3JZ_D3ELwOQ", title: "How to Hack Design Limits - Premium Tips"},
+            {id: "dQw4w9WgXcQ", title: "Millionaire Coding Secrets 2025"},
+            {id: "V-_O7nl0Ii0", title: "The Future of Web Development with Nazim"},
+            {id: "ScMzIvxBSi4", title: "Building a YouTube Clone in 10 Minutes"},
+            {id: "tgbNymZ7vqY", title: "Unlimited Content Strategy for YouTubers"}
+        ];
+
+        // কোটি কোটি কন্টেন্ট জেনারেট করার ইঞ্জিন
+        function generateBillionContent(amount = 24, query = "Recommended") {
+            const wall = document.getElementById('videoWall');
             
-            container.style.display = 'block';
-            player.src = "https://www.youtube.com/embed/" + videoId + "?autoplay=1";
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            for (let i = 0; i < amount; i++) {
+                const data = videoDB[Math.floor(Math.random() * videoDB.length)];
+                const views = (Math.random() * 999).toFixed(1) + "M";
+                const timeAgo = Math.floor(Math.random() * 23) + 1 + " hours ago";
+                
+                const card = document.createElement('div');
+                card.className = 'video-box';
+                card.onclick = () => launchPlayer(data.id);
+                
+                card.innerHTML = `
+                    <div class="v-thumb-wrap">
+                        <img src="https://img.youtube.com/vi/${data.id}/maxresdefault.jpg" loading="lazy">
+                        <div class="v-time">${Math.floor(Math.random()*15)+2}:${Math.floor(Math.random()*50)+10}</div>
+                    </div>
+                    <div class="v-data">
+                        <div class="v-chan-icon"></div>
+                        <div class="v-info">
+                            <h3>${query}: ${data.title} #${Math.floor(Math.random()*900000)}</h3>
+                            <p>XTR NAZIM • ${views} views • ${timeAgo}</p>
+                        </div>
+                    </div>
+                `;
+                wall.appendChild(card);
+            }
         }
+
+        // সার্চ ফাংশন
+        function executeMegaSearch() {
+            const val = document.getElementById('megaSearch').value;
+            if(val) {
+                document.getElementById('videoWall').innerHTML = "";
+                generateBillionContent(30, val);
+            }
+        }
+
+        // ভিডিও প্লেয়ার কন্ট্রোল
+        function launchPlayer(id) {
+            const modal = document.getElementById('player-modal');
+            const frame = document.getElementById('playerFrame');
+            frame.innerHTML = `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/${id}?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+            modal.style.display = 'flex';
+        }
+
+        function exitPlayer() {
+            document.getElementById('player-modal').style.display = 'none';
+            document.getElementById('playerFrame').innerHTML = "";
+        }
+
+        // আনলিমিটেড কন্টেন্ট স্ক্রল (Infinite Content Loop)
+        document.getElementById('scrollContainer').addEventListener('scroll', function() {
+            if (this.scrollTop + this.clientHeight >= this.scrollHeight - 20) {
+                generateBillionContent(12, "Unlimited Feed");
+            }
+        });
+
+        // ইনিশিয়াল লোড (প্রথমেই ৬০টি কন্টেন্ট)
+        generateBillionContent(60, "Trending");
     </script>
 </body>
 </html>
