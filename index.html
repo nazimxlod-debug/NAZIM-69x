@@ -1,243 +1,54 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FENZY | Men's Fashion Brand</title>
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-
-    <style>
-        :root {
-            --brand-color: #4a0404; /* আপনার লোগোর ডার্ক মেরুন কালার */
-            --gold: #d4af37;
-            --light-bg: #f9f9f9;
-        }
-
-        body {
-            margin: 0;
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--light-bg);
-            color: #333;
-        }
-
-        /* হেডার ডিজাইন */
-        header {
-            background: #fff;
-            padding: 15px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .brand-logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 32px;
-            font-weight: bold;
-            color: var(--brand-color);
-            letter-spacing: 2px;
-        }
-
-        .cart-icon {
-            font-size: 22px;
-            position: relative;
-            cursor: pointer;
-        }
-
-        .cart-count {
-            position: absolute;
-            top: -10px;
-            right: -10px;
-            background: red;
-            color: white;
-            font-size: 12px;
-            padding: 2px 6px;
-            border-radius: 50%;
-        }
-
-        /* হিরো ব্যানার */
-        .hero {
-            height: 400px;
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('hero-bg.jpg'); /* আপনার ছবি দিতে পারেন */
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            text-align: center;
-        }
-
-        .hero h1 { font-size: 45px; margin: 0; text-transform: uppercase; }
-        .hero p { font-size: 18px; margin: 10px 0; }
-
-        /* প্রোডাক্ট সেকশন */
-        .container { padding: 40px 5%; }
-        .section-title {
-            text-align: center;
-            font-size: 28px;
-            margin-bottom: 30px;
-            border-bottom: 2px solid var(--brand-color);
-            width: fit-content;
-            margin-left: auto;
-            margin-right: auto;
-            padding-bottom: 5px;
-        }
-
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 30px;
-        }
-
-        .product-card {
-            background: #fff;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: 0.3s;
-            position: relative;
-        }
-
-        .product-card:hover { transform: translateY(-10px); }
-
-        .product-img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-        }
-
-        .product-info { padding: 20px; text-align: center; }
-        .product-name { font-size: 18px; font-weight: bold; margin: 10px 0; }
-        .product-price { color: var(--brand-color); font-size: 20px; font-weight: 700; margin-bottom: 15px; }
-
-        .btn-group { display: flex; gap: 10px; }
-        
-        .btn-add {
-            flex: 1;
-            padding: 10px;
-            border: 2px solid var(--brand-color);
-            background: transparent;
-            color: var(--brand-color);
-            font-weight: bold;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: 0.3s;
-        }
-
-        .btn-add:hover { background: var(--brand-color); color: white; }
-
-        .btn-buy {
-            flex: 1;
-            padding: 10px;
-            background: var(--brand-color);
-            color: white;
-            border: none;
-            font-weight: bold;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
-        /* ফুটার */
-        footer {
-            background: #1a1a1a;
-            color: white;
-            padding: 40px 5%;
-            text-align: center;
-            margin-top: 50px;
-        }
-
-        /* মোবাইল স্ক্রিন */
-        @media (max-width: 600px) {
-            .product-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
-            .product-img { height: 200px; }
-            .hero h1 { font-size: 28px; }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>FENZY | Premium Streetwear BD</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <header>
-        <div class="brand-logo">FENZY</div>
-        <div class="cart-icon">
-            <i class="fas fa-shopping-bag"></i>
-            <span class="cart-count">0</span>
-        </div>
-    </header>
+<header>
+  <img src="logo.png" class="logo" alt="FENZY">
+  <nav>
+    <a href="#shop">Shop</a>
+    <a href="#contact">Order</a>
+  </nav>
+</header>
 
-    <section class="hero">
-        <h1>New Summer Collection</h1>
-    
-    </section>
+<section class="hero">
+  <h1>FENZY</h1>
+  <p>Minimal. Bold. Premium Streetwear.</p>
+  <a href="#shop" class="btn">Shop Now</a>
+</section>
 
-    <div class="container">
-        <h2 class="section-title">HOODIE COLLECTION </h2>
-        
-        <div class="product-grid">
-            <div class="product-card">
-                <img src="605369049_122110919931098627_2939632743081987479_n.jpg
-                    <div class="product-name">Premium White Shirt</div>
-                    <div class="product-price">৳ ১,৫৫০</div>
-                    <div class="btn-group">
-                        <button class="btn-add">Add to Cart</button>
-                        <button class="btn-buy">Buy Now</button>
-                    </div>
-                </div>
-            </div>
+<section id="shop" class="shop">
+  <h2>Shop</h2>
 
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="product-img">
-                <div class="product-info">
-                    <div class="product-name">Fenzy Oversized Tee</div>
-                    <div class="product-price">৳ ৮৫০</div>
-                    <div class="btn-group">
-                        <button class="btn-add">Add to Cart</button>
-                        <button class="btn-buy">Buy Now</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="product-img">
-                <div class="product-info">
-                    <div class="product-name">Modern Denim Jacket</div>
-                    <div class="product-price">৳ ২,৪০০</div>
-                    <div class="btn-group">
-                        <button class="btn-add">Add to Cart</button>
-                        <button class="btn-buy">Buy Now</button>
-                    </div>
-                </div>
-            </div>
-            
-            </div>
+  <div class="product">
+    <h3>Men Hoodie</h3>
+    <p class="price">৳500</p>
+    <p class="status available">Available Now</p>
+    <div class="buttons">
+      <a href="https://m.me/YOUR_PAGE" target="_blank">Messenger</a>
+      <a href="https://wa.me/880XXXXXXXXX" target="_blank">WhatsApp</a>
     </div>
+  </div>
 
-    <footer>
-        <p>&copy; 2026 FENZY by Nazim Islam. All Rights Reserved.</p>
-        <div style="margin-top: 10px;">
-            <i class="fab fa-facebook"></i> &nbsp; <i class="fab fa-instagram"></i> &nbsp; <i class="fab fa-tiktok"></i>
-        </div>
-    </footer>
+  <div class="product coming">
+    <h3>Women Collection</h3>
+    <p class="status">Coming Soon</p>
+  </div>
+</section>
 
-    <script>
-        // কার্টে অ্যাড করার সিম্পল লজিক
-        let count = 0;
-        const addButtons = document.querySelectorAll('.btn-add');
-        const cartCountDisplay = document.querySelector('.cart-count');
+<section id="contact" class="contact">
+  <h2>Order Now</h2>
+  <p>Message us on Facebook or WhatsApp</p>
+</section>
 
-        addButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                count++;
-                cartCountDisplay.innerText = count;
-                alert("প্রোডাক্টটি আপনার কার্টে যোগ করা হয়েছে!");
-            });
-        });
-    </script>
+<footer>
+  <p>© 2026 FENZY. All rights reserved.</p>
+</footer>
+
 </body>
 </html>
