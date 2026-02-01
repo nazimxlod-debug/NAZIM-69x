@@ -1,211 +1,208 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
-<meta charset="UTF-8">
-<title>Free Fire Panel Pro</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>69X PRO PANEL</title>
+    <style>
+        /* Global Styles */
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0f172a;
+            color: #ffffff;
+            text-align: center;
+        }
 
-<style>
-*{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:Segoe UI,Arial;
-  background:#0b0b0b;
-  color:#fff;
-}
+        /* Navigation Bar */
+        nav {
+            background-color: #1e293b;
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
 
-/* HEADER */
-header{
-  padding:30px;
-  text-align:center;
-  background:linear-gradient(90deg,#ff2a00,#ff8c00);
-}
-header h1{margin:0;font-size:34px}
-header p{opacity:.9}
+        nav a {
+            color: #38bdf8;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
 
-/* NAV */
-nav{
-  position:sticky;
-  top:0;
-  background:#111;
-  padding:12px;
-  text-align:center;
-  z-index:10;
-}
-nav a{
-  color:#fff;
-  margin:0 15px;
-  text-decoration:none;
-  font-weight:600;
-}
-nav a:hover{color:#ff8c00}
+        nav a:hover {
+            color: #f472b6;
+        }
 
-/* CONTAINER */
-.container{padding:25px}
+        /* Header */
+        header {
+            padding: 50px 20px;
+            background: linear-gradient(45deg, #1e293b, #334155);
+        }
 
-/* CARD */
-.card{
-  background:#151515;
-  border-radius:14px;
-  padding:20px;
-  margin-bottom:25px;
-  box-shadow:0 0 20px rgba(0,0,0,.6);
-}
-.card h2{color:#ff8c00}
+        header h1 {
+            font-size: 3rem;
+            margin: 0;
+            color: #38bdf8;
+            text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+        }
 
-/* PANEL BOX */
-.panel-box{
-  background:#1c1c1c;
-  padding:15px;
-  border-radius:12px;
-  margin-top:15px;
-  cursor:pointer;
-  transition:.3s;
-}
-.panel-box:hover{
-  transform:scale(1.03);
-  box-shadow:0 0 20px rgba(255,140,0,.3);
-}
-.panel-content{
-  max-height:0;
-  overflow:hidden;
-  transition:max-height .4s ease;
-}
-.panel-box.active .panel-content{
-  max-height:300px;
-  margin-top:10px;
-}
+        /* Main Panel Sections */
+        .container {
+            padding: 40px 20px;
+            max-width: 1000px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
 
-/* BUTTON */
-.btn{
-  display:inline-block;
-  background:#ff3c00;
-  padding:12px 20px;
-  border-radius:8px;
-  color:#fff;
-  text-decoration:none;
-  margin:5px;
-}
-.btn:hover{background:#ff8c00}
+        .card {
+            background-color: #1e293b;
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #334155;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
 
-/* SOCIAL */
-.social a{
-  margin:8px;
-  display:inline-block;
-}
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+            border-color: #38bdf8;
+        }
 
-/* FOOTER */
-footer{
-  background:#111;
-  color:#888;
-  text-align:center;
-  padding:15px;
-}
+        .card h3 {
+            margin: 0;
+            color: #f472b6;
+        }
 
-/* SMALL TEXT */
-.small{font-size:14px;color:#bbb}
-.warn{color:#ff5555}
-</style>
+        /* Content Display Area (For Privacy, Disclaimer etc) */
+        #content-display {
+            display: none;
+            padding: 40px 20px;
+            max-width: 800px;
+            margin: 20px auto;
+            background: #1e293b;
+            border-radius: 15px;
+            text-align: left;
+            line-height: 1.6;
+        }
+
+        .show {
+            display: block !important;
+        }
+
+        .back-btn {
+            background: #38bdf8;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 20px;
+            font-size: 12px;
+            color: #94a3b8;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 600px) {
+            header h1 { font-size: 2rem; }
+            nav a { font-size: 12px; }
+        }
+    </style>
 </head>
-
 <body>
 
-<header>
-  <h1>🔥 Free Fire Panel Pro</h1>
-  <p>Professional UI Demo • Fan Website</p>
-</header>
+    <nav>
+        <a onclick="showSection('home')">HOME</a>
+        <a onclick="showSection('privacy')">PRIVACY POLICY</a>
+        <a href="#">FOLLOW ME</a>
+        <a href="#">UPDATE</a>
+        <a onclick="showSection('disclaimer')">DISCLAIMER</a>
+        <a href="#">SUPPORT</a>
+    </nav>
 
-<nav>
-  <a href="#home">Home</a>
-  <a href="#panels">Panels</a>
-  <a href="#privacy">Privacy</a>
-  <a href="#follow">Follow</a>
-</nav>
+    <header id="main-header">
+        <h1>69X PRO PANEL</h1>
+        <p>Your Ultimate Gaming Assistant</p>
+    </header>
 
-<div class="container" id="home">
-
-  <div class="card">
-    <h2>Welcome</h2>
-    <p>
-      This is a professional **Free Fire fan website**.  
-      Here we showcase **panel UI demos, layouts & concepts** only.
-    </p>
-  </div>
-
-  <!-- PANELS -->
-  <div class="card" id="panels">
-    <h2>🎮 Our Panels</h2>
-
-    <div class="panel-box" onclick="togglePanel(this)">
-      <h3>🔥 Free Panel</h3>
-      <div class="panel-content">
-        <p class="small">
-          Free panel UI demo with basic options and clean layout.
-        </p>
-        <p class="warn">Demo only – no real function</p>
-      </div>
+    <div class="container" id="main-panel">
+        <div class="card">
+            <h3>FREE PANEL</h3>
+            <p>Access basic features for free.</p>
+        </div>
+        <div class="card">
+            <h3>VIP PANEL</h3>
+            <p>Premium features for pro users.</p>
+        </div>
+        <div class="card">
+            <h3>EMULATOR BYPASS</h3>
+            <p>Safe bypass for emulator players.</p>
+        </div>
+        <div class="card">
+            <h3>AIMBOT HEAD</h3>
+            <p>Extreme precision for every shot.</p>
+        </div>
     </div>
 
-    <div class="panel-box" onclick="togglePanel(this)">
-      <h3>💎 VIP Panel</h3>
-      <div class="panel-content">
-        <p class="small">
-          Advanced UI design, smooth animation & premium look.
-        </p>
-        <p class="warn">UI showcase only</p>
-      </div>
+    <div id="content-display">
+        <button class="back-btn" onclick="showSection('home')">← Back to Panel</button>
+        <div id="content-text"></div>
     </div>
 
-    <div class="panel-box" onclick="togglePanel(this)">
-      <h3>🆔 UID Bypass (Concept)</h3>
-      <div class="panel-content">
-        <p class="small">
-          This section demonstrates **conceptual UI only**.  
-          No bypass, no exploit, no cheat.
-        </p>
-        <p class="warn">Educational concept</p>
-      </div>
-    </div>
-  </div>
+    <footer>
+        &copy; 2024 69X PRO PANEL | All Rights Reserved.
+    </footer>
 
-  <!-- PRIVACY -->
-  <div class="card" id="privacy">
-    <h2>🔒 Privacy Policy</h2>
-    <p class="small">
-      We respect user privacy.  
-      Our website does not collect personal data, login details,  
-      game accounts, or any sensitive information.
-    </p>
-    <p class="small">
-      This website is created for **educational & UI demonstration purposes only**.  
-      We do not promote or provide hacks, cheats, or illegal tools.
-    </p>
-    <p class="small">
-      Free Fire and Garena are trademarks of their respective owners.
-    </p>
-  </div>
+    <script>
+        function showSection(section) {
+            const mainPanel = document.getElementById('main-panel');
+            const mainHeader = document.getElementById('main-header');
+            const contentDisplay = document.getElementById('content-display');
+            const contentText = document.getElementById('content-text');
 
-  <!-- FOLLOW -->
-  <div class="card" id="follow">
-    <h2>📲 Follow Us</h2>
-    <div class="social">
-      <a class="btn" href="https://facebook.com" target="_blank">Facebook</a>
-      <a class="btn" href="https://youtube.com" target="_blank">YouTube</a>
-      <a class="btn" href="https://t.me" target="_blank">Telegram</a>
-      <a class="btn" href="https://github.com" target="_blank">GitHub</a>
-    </div>
-  </div>
+            if (section === 'home') {
+                mainPanel.classList.remove('hide');
+                mainHeader.style.display = 'block';
+                mainPanel.style.display = 'grid';
+                contentDisplay.style.display = 'none';
+            } else {
+                mainHeader.style.display = 'none';
+                mainPanel.style.display = 'none';
+                contentDisplay.style.display = 'block';
 
-</div>
-
-<footer>
-  © 2026 Free Fire Panel Pro • Fan Website
-</footer>
-
-<script>
-function togglePanel(el){
-  el.classList.toggle("active");
-}
-</script>
-
+                if (section === 'privacy') {
+                    contentText.innerHTML = `
+                        <h2>Privacy Policy</h2>
+                        <p>আপনার ব্যক্তিগত তথ্যের নিরাপত্তা আমাদের কাছে অত্যন্ত গুরুত্বপূর্ণ। ৬৯এক্স প্রো প্যানেল কোনো ব্যবহারকারীর ব্যক্তিগত তথ্য চুরি করে না বা অপব্যবহার করে না। এই সাইটটি শুধুমাত্র গেমিং বিনোদনের জন্য তৈরি করা হয়েছে।</p>
+                        <ul>
+                            <li>আমরা কোনো থার্ড পার্টি অ্যাপের সাথে ডেটা শেয়ার করি না।</li>
+                            <li>আপনার লগইন তথ্য আমাদের সার্ভারে সেভ হয় না।</li>
+                        </ul>`;
+                } else if (section === 'disclaimer') {
+                    contentText.innerHTML = `
+                        <h2>Disclaimer</h2>
+                        <p>এই ওয়েবসাইটটি শুধুমাত্র শিক্ষামূলক এবং বিনোদনের উদ্দেশ্যে তৈরি।</p>
+                        <p>১. গেম আইডিতে কোনো সমস্যা হলে কর্তৃপক্ষ দায়ী থাকবে না।<br>
+                        ২. এটি অফিসিয়াল কোনো গেম টুল নয়।<br>
+                        ৩. নিজ দায়িত্বে এটি ব্যবহার করার অনুরোধ করা হলো।</p>`;
+                }
+            }
+        }
+    </script>
 </body>
 </html>
