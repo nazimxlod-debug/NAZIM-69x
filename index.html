@@ -3,321 +3,276 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>69X PRO PANEL - Ultimate Gaming</title>
+    <title>69X PRO PANEL - Best Gaming UI</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
 
     <style>
-        /* --- Global Styles & Reset --- */
         :root {
-            --primary-color: #00f2ea; /* Neon Cyan */
-            --secondary-color: #ff0055; /* Neon Pink */
-            --bg-dark: #0a0e17; /* Deep Dark Blue background */
-            --bg-card: #121a2b; /* Slightly lighter card bg */
-            --text-light: #e2e8f0;
+            --primary: #00f2ea; /* Cyan Neon */
+            --secondary: #ff0055; /* Pink Neon */
+            --bg: #0a0e17;
+            --card-bg: #121a2b;
+            --text: #e2e8f0;
         }
 
         body {
             margin: 0;
             font-family: 'Poppins', sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-light);
+            background-color: var(--bg);
+            color: var(--text);
             overflow-x: hidden;
         }
 
-        a { text-decoration: none; color: inherit; }
-        ul { list-style: none; padding: 0; margin: 0; }
+        /* --- Custom Scrollbar --- */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
 
-        /* --- Top Navigation Bar (Updated UI) --- */
+        /* --- Navbar --- */
         .navbar {
-            background: rgba(10, 14, 23, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 15px 30px;
+            background: rgba(10, 14, 23, 0.9);
+            backdrop-filter: blur(15px);
+            padding: 12px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             position: sticky;
             top: 0;
             z-index: 1000;
-            border-bottom: 2px solid rgba(0, 242, 234, 0.1);
+            border-bottom: 1px solid rgba(0, 242, 234, 0.2);
         }
 
-        .brand-logo {
+        .logo {
             font-family: 'Rajdhani', sans-serif;
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: 700;
-            color: var(--text-light);
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
+            color: #fff;
         }
-        .brand-logo span { color: var(--primary-color); }
+        .logo span { color: var(--primary); }
 
-        .nav-links {
-            display: flex;
-            gap: 20px;
-            align-items: center;
-        }
-
+        .nav-links { display: flex; gap: 15px; align-items: center; }
         .nav-item {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 500;
+            text-transform: uppercase;
             cursor: pointer;
-            transition: all 0.3s ease;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: 0.3s;
             display: flex;
             align-items: center;
-            gap: 8px;
-            padding: 8px 12px;
-            border-radius: 5px;
+            gap: 6px;
+            text-decoration: none;
+            color: var(--text);
         }
-        .nav-item i { font-size: 1.1rem; color: var(--primary-color); }
-        .nav-item:hover { background: rgba(0, 242, 234, 0.1); color: var(--primary-color); }
+        .nav-item i { color: var(--primary); }
+        .nav-item:hover { background: rgba(0, 242, 234, 0.15); color: var(--primary); }
 
-        /* Specific Social Icons Colors */
-        .discord-link i { color: #5865F2; }
-        .youtube-link i { color: #FF0000; }
-        .discord-link:hover { background: rgba(88, 101, 242, 0.2); color: #5865F2 !important; }
-        .youtube-link:hover { background: rgba(255, 0, 0, 0.2); color: #FF0000 !important; }
+        .discord-btn i { color: #5865F2; }
+        .youtube-btn i { color: #FF0000; }
 
-
-        /* --- Main Hero Header --- */
-        .hero-header {
+        /* --- Hero Section --- */
+        .hero {
             text-align: center;
-            padding: 80px 20px 40px;
-            background: radial-gradient(circle at center, #1a233a 0%, #0a0e17 70%);
+            padding: 100px 20px 60px;
+            background: radial-gradient(circle at top, #1a233a 0%, #0a0e17 80%);
         }
-        .hero-header h1 {
+
+        .hero h1 {
             font-family: 'Rajdhani', sans-serif;
-            font-size: 4rem;
+            font-size: 5rem;
             margin: 0;
             text-transform: uppercase;
-            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            background: linear-gradient(to bottom, #fff 30%, var(--primary) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 20px rgba(0, 242, 234, 0.4);
+            filter: drop-shadow(0 0 15px rgba(0, 242, 234, 0.4));
+            line-height: 1;
         }
-        .hero-header p { font-size: 1.2rem; color: #94a3b8; margin-top: 10px; }
 
-        /* --- Grid Container for Panels --- */
-        .panel-container {
+        .hero p {
+            font-size: 1.1rem;
+            color: #94a3b8;
+            letter-spacing: 5px;
+            margin-top: 15px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        /* --- Panels Grid --- */
+        .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px;
-            max-width: 1100px;
-            margin: 0 auto 50px;
-            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto 80px;
+            padding: 0 20px;
         }
 
-        .panel-card {
-            background: var(--bg-card);
-            padding: 35px 25px;
+        .card {
+            background: var(--card-bg);
             border-radius: 20px;
+            padding: 40px 30px;
             text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
-            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
-            overflow: hidden;
             cursor: pointer;
         }
 
-        .panel-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 3px;
-            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.4s ease;
+        .card:hover {
+            transform: scale(1.05);
+            border-color: var(--primary);
+            box-shadow: 0 0 30px rgba(0, 242, 234, 0.15);
         }
 
-        .panel-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px -15px rgba(0, 242, 234, 0.2);
-        }
-        .panel-card:hover::before { transform: scaleX(1); }
-
-        .card-icon {
-            font-size: 3rem;
+        .card i {
+            font-size: 3.5rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             margin-bottom: 20px;
-            color: var(--primary-color);
-            text-shadow: 0 0 15px var(--primary-color);
         }
-        .panel-card h3 { font-family: 'Rajdhani', sans-serif; font-size: 1.5rem; margin: 10px 0; }
-        .panel-card p { color: #94a3b8; font-size: 0.9rem; }
 
-        /* --- Hidden Content Area (Privacy/Disclaimer) --- */
-        #content-display-area {
-            display: none; /* Hidden by default */
-            max-width: 800px;
-            margin: 40px auto;
+        .card h3 { font-family: 'Rajdhani', sans-serif; font-size: 1.8rem; margin: 10px 0; }
+        .card p { color: #64748b; font-size: 0.95rem; }
+
+        /* --- Content Page Styling --- */
+        #content-page {
+            display: none;
+            max-width: 900px;
+            margin: 50px auto;
             padding: 40px;
-            background: var(--bg-card);
-            border-radius: 20px;
-            border: 1px solid rgba(0, 242, 234, 0.2);
-            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+            background: var(--card-bg);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        
-        .content-title {
-            font-family: 'Rajdhani', sans-serif;
-            font-size: 2rem;
-            color: var(--primary-color);
-            margin-bottom: 20px;
-            border-bottom: 2px solid rgba(255,255,255,0.1);
-            padding-bottom: 15px;
-        }
-        .content-body { line-height: 1.8; color: #ccc; text-align: left; }
-        .content-body li { margin-bottom: 10px; list-style: square; margin-left: 20px; }
 
-        .back-button {
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            border: none;
-            padding: 12px 25px;
-            color: #fff;
-            font-weight: bold;
-            border-radius: 30px;
+        .btn-back {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 10px 20px;
+            border-radius: 50px;
             cursor: pointer;
+            font-weight: 600;
             margin-bottom: 30px;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
             transition: 0.3s;
         }
-        .back-button:hover { filter: brightness(1.2); transform: scale(1.05); }
+        .btn-back:hover { background: var(--primary); color: #000; }
 
         /* --- Footer --- */
         footer {
             text-align: center;
-            padding: 30px;
-            background: #070a11;
-            color: #64748b;
-            font-size: 0.85rem;
+            padding: 40px;
             border-top: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.8rem;
+            color: #475569;
         }
 
-        /* --- Mobile Responsive --- */
-        @media (max-width: 900px) {
-            .navbar { flex-direction: column; padding: 15px; }
-            .brand-logo { margin-bottom: 15px; }
-            .nav-links { flex-wrap: wrap; justify-content: center; gap: 10px; }
-            .hero-header h1 { font-size: 2.5rem; }
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3.5rem; }
+            .navbar { flex-direction: column; gap: 15px; }
+            .nav-links { flex-wrap: wrap; justify-content: center; }
         }
     </style>
 </head>
 <body>
 
     <nav class="navbar">
-        <div class="brand-logo">
-            69X <span>PRO PANEL</span>
-        </div>
-
-        <ul class="nav-links">
-            <li><a class="nav-item" onclick="showHome()"><i class="fa-solid fa-house"></i> Home</a></li>
-            <li><a class="nav-item" onclick="showContent('privacy')"><i class="fa-solid fa-shield-halved"></i> Privacy</a></li>
-            <li><a class="nav-item" onclick="showContent('disclaimer')"><i class="fa-solid fa-triangle-exclamation"></i> Disclaimer</a></li>
-            <li><a class="nav-item"><i class="fa-solid fa-wand-magic-sparkles"></i> Update</a></li>
+        <div class="logo">69X <span>PRO PANEL</span></div>
+        <div class="nav-links">
+            <a class="nav-item" onclick="showHome()"><i class="fa-solid fa-house"></i> Home</a>
+            <a class="nav-item" onclick="showPage('privacy')"><i class="fa-solid fa-user-shield"></i> Privacy</a>
+            <a class="nav-item" onclick="showPage('disclaimer')"><i class="fa-solid fa-circle-exclamation"></i> Disclaimer</a>
             
-            <li>
-                <a href="https://discord.gg/2qNzUt3Z" target="_blank" class="nav-item discord-link">
-                    <i class="fa-brands fa-discord"></i> Discord
-                </a>
-            </li>
-            <li>
-                <a href="https://www.youtube.com/@NAZIM69x" target="_blank" class="nav-item youtube-link">
-                    <i class="fa-brands fa-youtube"></i> YouTube
-                </a>
-            </li>
-        </ul>
+            <a href="https://discord.gg/2qNzUt3Z" target="_blank" class="nav-item discord-btn">
+                <i class="fa-brands fa-discord"></i> Discord
+            </a>
+            <a href="https://www.youtube.com/@NAZIM69x" target="_blank" class="nav-item youtube-btn">
+                <i class="fa-brands fa-youtube"></i> YouTube
+            </a>
+        </div>
     </nav>
 
-    <main id="main-content">
-        <header class="hero-header">
-            <h1>LESGOOOOOOOOOOOO</h1>
-            <p>Welcome to the ultimate gaming utility hub.</p>
-        </header>
+    <main id="home-page">
+        <section class="hero">
+            <h1>69X PRO</h1>
+            <p>LESGOOOOOOOOOOOO</p>
+        </section>
 
-        <div class="panel-container">
-            <div class="panel-card">
-                <i class="fa-solid fa-bolt card-icon"></i>
+        <div class="grid">
+            <div class="card">
+                <i class="fa-solid fa-bolt"></i>
                 <h3>FREE PANEL</h3>
-                <p>Essential features for everyone, absolutely free.</p>
+                <p>Standard features for everyday winners.</p>
             </div>
-            <div class="panel-card">
-                <i class="fa-solid fa-crown card-icon" style="color: #ffd700;"></i>
+            <div class="card">
+                <i class="fa-solid fa-shield-heart" style="filter: hue-rotate(290deg);"></i>
                 <h3>VIP PANEL</h3>
-                <p>Unlock premium power and exclusive tools.</p>
+                <p>Ultimate power for legendary players.</p>
             </div>
-            <div class="panel-card">
-                <i class="fa-solid fa-computer card-icon" style="color: var(--secondary-color);"></i>
+            <div class="card">
+                <i class="fa-solid fa-laptop-code"></i>
                 <h3>EMULATOR BYPASS</h3>
-                <p>Play safely on PC without detection risks.</p>
+                <p>Stay undetected, play like a pro on PC.</p>
             </div>
-            <div class="panel-card">
-                <i class="fa-solid fa-crosshairs card-icon"></i>
+            <div class="card">
+                <i class="fa-solid fa-bullseye" style="filter: hue-rotate(150deg);"></i>
                 <h3>AIMBOT HEAD</h3>
-                <p>Dominate with maximum precision targeting.</p>
+                <p>Lock on target with surgical precision.</p>
             </div>
         </div>
     </main>
 
-    <section id="content-display-area">
-        <button class="back-button" onclick="showHome()">
-            <i class="fa-solid fa-arrow-left"></i> Back to Panel
-        </button>
-        <div id="dynamic-content-text" class="content-body">
-            </div>
+    <section id="content-page">
+        <button class="btn-back" onclick="showHome()">← Go Back</button>
+        <div id="page-data"></div>
     </section>
 
     <footer>
-        &copy; 2024 69X PRO PANEL. Developed for Gamers.
+        Copyright &copy; 2024 69X PRO PANEL | Built for the Gaming Community
     </footer>
 
     <script>
-        // এলিমেন্টগুলো ধরে রাখা
-        const mainContentDiv = document.getElementById('main-content');
-        const contentDisplayArea = document.getElementById('content-display-area');
-        const dynamicContentText = document.getElementById('dynamic-content-text');
+        const home = document.getElementById('home-page');
+        const contentPage = document.getElementById('content-page');
+        const pageData = document.getElementById('page-data');
 
-        // হোম পেজে ফিরে আসার ফাংশন
         function showHome() {
-            mainContentDiv.style.display = 'block';
-            contentDisplayArea.style.display = 'none';
-            window.scrollTo(0, 0); // পেজের উপরে নিয়ে যাবে
+            home.style.display = 'block';
+            contentPage.style.display = 'none';
+            window.scrollTo(0, 0);
         }
 
-        // প্রাইভেসি বা ডিসক্লেমার দেখানোর ফাংশন
-        function showContent(type) {
-            mainContentDiv.style.display = 'none';
-            contentDisplayArea.style.display = 'block';
-            
-            let title = "";
-            let body = "";
+        function showPage(type) {
+            home.style.display = 'none';
+            contentPage.style.display = 'block';
+            window.scrollTo(0, 0);
 
             if (type === 'privacy') {
-                title = `<h2 class="content-title"><i class="fa-solid fa-shield-halved"></i> Privacy Policy</h2>`;
-                body = `
-                    <p>আপনার গেমিং অভিজ্ঞতা নিরাপদ রাখা আমাদের অগ্রাধিকার। 69X PRO PANEL ব্যবহার করার সময় আপনার ডেটা কীভাবে ব্যবহার করা হয় তা নিচে উল্লেখ করা হলো:</p>
-                    <ul>
-                        <li>আমরা আপনার গেম আইডি বা পাসওয়ার্ড সংরক্ষণ করি না।</li>
-                        <li>এই টুলটি শুধুমাত্র আপনার ডিভাইসে স্থানীয়ভাবে কাজ করে।</li>
-                        <li>আমরা কোনো তৃতীয় পক্ষের কাছে আপনার তথ্য বিক্রি বা শেয়ার করি না।</li>
+                pageData.innerHTML = `
+                    <h2 style="color:var(--primary)">Privacy Policy</h2>
+                    <p>আপনার নিরাপত্তা আমাদের কাছে সবচেয়ে বড় বিষয়। 69X PRO PANEL আপনার কোনো পার্সোনাল ডেটা স্টোর করে না।</p>
+                    <ul style="line-height: 2;">
+                        <li>আমরা আপনার গেম অ্যাকাউন্টের এক্সেস নেই না।</li>
+                        <li>কোনো থার্ড পার্টি সার্ভারে ডেটা পাঠানো হয় না।</li>
+                        <li>এটি সম্পূর্ণ নিরাপদ একটি ইউজার ইন্টারফেস।</li>
                     </ul>
-                    <p>যেকোনো সময় এই নীতি পরিবর্তন হতে পারে, তাই নিয়মিত চেক করার অনুরোধ রইল।</p>
                 `;
             } else if (type === 'disclaimer') {
-                title = `<h2 class="content-title"><i class="fa-solid fa-triangle-exclamation"></i> Disclaimer</h2>`;
-                body = `
-                    <p><strong>সতর্কতা:</strong> এই ওয়েবসাইট এবং এখানকার টুলগুলো শুধুমাত্র শিক্ষামূলক এবং বিনোদনের উদ্দেশ্যে তৈরি করা হয়েছে।</p>
-                    <ul>
-                        <li>এটি কোনো অফিসিয়াল গেম ডেভেলপারদের দ্বারা অনুমোদিত নয়।</li>
-                        <li>এই টুলগুলো ব্যবহারের ফলে আপনার গেম অ্যাকাউন্টে কোনো সমস্যা হলে (যেমন: ব্যান বা সাসপেনশন), তার দায়ভার সম্পূর্ণ আপনার।</li>
-                        <li>আমরা ফেয়ার প্লে সমর্থন করি। নিজ ঝুঁকিতে ব্যবহার করুন।</li>
-                    </ul>
-                    <p>LESGOOOOOOOOOOOO! নিরাপদে খেলুন, দায়িত্বের সাথে খেলুন।</p>
+                pageData.innerHTML = `
+                    <h2 style="color:var(--secondary)">Disclaimer</h2>
+                    <p><strong>মনোযোগ দিন:</strong> এই ওয়েবসাইটটি শুধুমাত্র গেমিং টুলস প্রদর্শন করার জন্য তৈরি।</p>
+                    <p>১. আমরা কোনো ধরণের হ্যাকিং বা ইললিগাল অ্যাক্টিভিটি প্রোমোট করি না।<br>
+                    ২. টুলটি ব্যবহারের ফলে আপনার অ্যাকাউন্টে কোনো সমস্যা হলে সেটির দায়ভার আমাদের নয়।<br>
+                    ৩. দয়া করে ফেয়ার প্লে বজায় রাখুন।</p>
+                    <h3 style="color:var(--primary)">LESGOOOOOOOOOOOO!</h3>
                 `;
             }
-
-            dynamicContentText.innerHTML = title + body;
-            window.scrollTo(0, 0);
         }
     </script>
 </body>
