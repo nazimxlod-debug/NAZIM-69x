@@ -2,164 +2,208 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Free Fire Panel Hub</title>
+<title>Free Fire Panel Pro</title>
 
 <style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #0d0d0d;
-  color: #ffffff;
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Segoe UI,Arial;
+  background:#0b0b0b;
+  color:#fff;
 }
 
-header {
-  background: linear-gradient(90deg, #ff2a00, #ff6a00);
-  padding: 25px;
-  text-align: center;
+/* HEADER */
+header{
+  padding:30px;
+  text-align:center;
+  background:linear-gradient(90deg,#ff2a00,#ff8c00);
+}
+header h1{margin:0;font-size:34px}
+header p{opacity:.9}
+
+/* NAV */
+nav{
+  position:sticky;
+  top:0;
+  background:#111;
+  padding:12px;
+  text-align:center;
+  z-index:10;
+}
+nav a{
+  color:#fff;
+  margin:0 15px;
+  text-decoration:none;
+  font-weight:600;
+}
+nav a:hover{color:#ff8c00}
+
+/* CONTAINER */
+.container{padding:25px}
+
+/* CARD */
+.card{
+  background:#151515;
+  border-radius:14px;
+  padding:20px;
+  margin-bottom:25px;
+  box-shadow:0 0 20px rgba(0,0,0,.6);
+}
+.card h2{color:#ff8c00}
+
+/* PANEL BOX */
+.panel-box{
+  background:#1c1c1c;
+  padding:15px;
+  border-radius:12px;
+  margin-top:15px;
+  cursor:pointer;
+  transition:.3s;
+}
+.panel-box:hover{
+  transform:scale(1.03);
+  box-shadow:0 0 20px rgba(255,140,0,.3);
+}
+.panel-content{
+  max-height:0;
+  overflow:hidden;
+  transition:max-height .4s ease;
+}
+.panel-box.active .panel-content{
+  max-height:300px;
+  margin-top:10px;
 }
 
-header h1 {
-  margin: 0;
-  font-size: 32px;
+/* BUTTON */
+.btn{
+  display:inline-block;
+  background:#ff3c00;
+  padding:12px 20px;
+  border-radius:8px;
+  color:#fff;
+  text-decoration:none;
+  margin:5px;
+}
+.btn:hover{background:#ff8c00}
+
+/* SOCIAL */
+.social a{
+  margin:8px;
+  display:inline-block;
 }
 
-header p {
-  margin: 5px 0 0;
-  opacity: 0.9;
+/* FOOTER */
+footer{
+  background:#111;
+  color:#888;
+  text-align:center;
+  padding:15px;
 }
 
-nav {
-  background: #111;
-  padding: 12px;
-  text-align: center;
-}
-
-nav a {
-  color: #fff;
-  margin: 0 15px;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-nav a:hover {
-  color: #ff6a00;
-}
-
-.container {
-  padding: 20px;
-}
-
-.card {
-  background: #1b1b1b;
-  padding: 20px;
-  margin-bottom: 20px;
-  border-radius: 12px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.6);
-}
-
-.card h2 {
-  color: #ff6a00;
-}
-
-button {
-  background: #ff3c00;
-  border: none;
-  padding: 12px 20px;
-  color: #fff;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 15px;
-  margin: 5px 0;
-  width: 100%;
-}
-
-button:hover {
-  background: #ff6a00;
-}
-
-.panel {
-  border: 1px solid #333;
-  padding: 15px;
-  border-radius: 10px;
-  margin-top: 10px;
-}
-
-footer {
-  text-align: center;
-  padding: 15px;
-  color: #888;
-  background: #111;
-}
-.warning {
-  color: #ff4444;
-  font-size: 14px;
-}
+/* SMALL TEXT */
+.small{font-size:14px;color:#bbb}
+.warn{color:#ff5555}
 </style>
 </head>
 
 <body>
 
 <header>
-  <h1>🔥 Free Fire Panel Hub</h1>
-  <p>Free Fire Fan Website • UI Demo Panel</p>
+  <h1>🔥 Free Fire Panel Pro</h1>
+  <p>Professional UI Demo • Fan Website</p>
 </header>
 
 <nav>
-  <a href="#">Home</a>
-  <a href="#panel">Panels</a>
-  <a href="#tips">Tips</a>
-  <a href="#disclaimer">Disclaimer</a>
+  <a href="#home">Home</a>
+  <a href="#panels">Panels</a>
+  <a href="#privacy">Privacy</a>
+  <a href="#follow">Follow</a>
 </nav>
 
-<div class="container">
+<div class="container" id="home">
 
   <div class="card">
     <h2>Welcome</h2>
     <p>
-      This is a Free Fire fan website.  
-      Here you will find **panel UI demo**, tips & guides.
+      This is a professional **Free Fire fan website**.  
+      Here we showcase **panel UI demos, layouts & concepts** only.
     </p>
   </div>
 
-  <div class="card" id="panel">
-    <h2>🎮 Free Panel (UI Demo)</h2>
+  <!-- PANELS -->
+  <div class="card" id="panels">
+    <h2>🎮 Our Panels</h2>
 
-    <div class="panel">
-      <button onclick="demo()">Headshot Boost (Demo)</button>
-      <button onclick="demo()">Aim Assist (Demo)</button>
-      <button onclick="demo()">No Recoil (Demo)</button>
-      <p class="warning">⚠️ Demo only – No real effect</p>
+    <div class="panel-box" onclick="togglePanel(this)">
+      <h3>🔥 Free Panel</h3>
+      <div class="panel-content">
+        <p class="small">
+          Free panel UI demo with basic options and clean layout.
+        </p>
+        <p class="warn">Demo only – no real function</p>
+      </div>
+    </div>
+
+    <div class="panel-box" onclick="togglePanel(this)">
+      <h3>💎 VIP Panel</h3>
+      <div class="panel-content">
+        <p class="small">
+          Advanced UI design, smooth animation & premium look.
+        </p>
+        <p class="warn">UI showcase only</p>
+      </div>
+    </div>
+
+    <div class="panel-box" onclick="togglePanel(this)">
+      <h3>🆔 UID Bypass (Concept)</h3>
+      <div class="panel-content">
+        <p class="small">
+          This section demonstrates **conceptual UI only**.  
+          No bypass, no exploit, no cheat.
+        </p>
+        <p class="warn">Educational concept</p>
+      </div>
     </div>
   </div>
 
-  <div class="card" id="tips">
-    <h2>🎯 Pro Tips</h2>
-    <ul>
-      <li>Use proper sensitivity</li>
-      <li>Always aim at chest then drag up</li>
-      <li>Use 2x / 4x scope correctly</li>
-      <li>Stable internet = better headshot</li>
-    </ul>
+  <!-- PRIVACY -->
+  <div class="card" id="privacy">
+    <h2>🔒 Privacy Policy</h2>
+    <p class="small">
+      We respect user privacy.  
+      Our website does not collect personal data, login details,  
+      game accounts, or any sensitive information.
+    </p>
+    <p class="small">
+      This website is created for **educational & UI demonstration purposes only**.  
+      We do not promote or provide hacks, cheats, or illegal tools.
+    </p>
+    <p class="small">
+      Free Fire and Garena are trademarks of their respective owners.
+    </p>
   </div>
 
-  <div class="card" id="disclaimer">
-    <h2>⚠️ Disclaimer</h2>
-    <p>
-      This website is for **educational & UI demonstration purposes only**.  
-      We do NOT provide hacks, cheats, mods or illegal tools.  
-      Free Fire is a registered trademark of Garena.
-    </p>
+  <!-- FOLLOW -->
+  <div class="card" id="follow">
+    <h2>📲 Follow Us</h2>
+    <div class="social">
+      <a class="btn" href="https://facebook.com" target="_blank">Facebook</a>
+      <a class="btn" href="https://youtube.com" target="_blank">YouTube</a>
+      <a class="btn" href="https://t.me" target="_blank">Telegram</a>
+      <a class="btn" href="https://github.com" target="_blank">GitHub</a>
+    </div>
   </div>
 
 </div>
 
 <footer>
-  © 2026 Free Fire Fan Website | Not Official
+  © 2026 Free Fire Panel Pro • Fan Website
 </footer>
 
 <script>
-function demo() {
-  alert("This is only a UI demo 😄\nNo hack, no cheat.");
+function togglePanel(el){
+  el.classList.toggle("active");
 }
 </script>
 
