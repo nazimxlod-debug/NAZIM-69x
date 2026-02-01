@@ -1,145 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>FENZY | Premium Streetwear BD</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
+<meta charset="UTF-8">
+<title>Free Fire Panel Hub</title>
 
-    body {
-      background: #fff;
-      color: #000;
-    }
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0d0d0d;
+  color: #ffffff;
+}
 
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px;
-      border-bottom: 1px solid #eee;
-    }
+header {
+  background: linear-gradient(90deg, #ff2a00, #ff6a00);
+  padding: 25px;
+  text-align: center;
+}
 
-    .logo {
-      height: 40px;
-    }
+header h1 {
+  margin: 0;
+  font-size: 32px;
+}
 
-    nav a {
-      margin-left: 20px;
-      text-decoration: none;
-      color: #000;
-      font-weight: bold;
-    }
+header p {
+  margin: 5px 0 0;
+  opacity: 0.9;
+}
 
-    .hero {
-      text-align: center;
-      padding: 80px 20px;
-    }
+nav {
+  background: #111;
+  padding: 12px;
+  text-align: center;
+}
 
-    .hero h1 {
-      font-size: 48px;
-      letter-spacing: 4px;
-    }
+nav a {
+  color: #fff;
+  margin: 0 15px;
+  text-decoration: none;
+  font-weight: bold;
+}
 
-    .btn {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 12px 30px;
-      background: #000;
-      color: #fff;
-      text-decoration: none;
-    }
+nav a:hover {
+  color: #ff6a00;
+}
 
-    .shop {
-      padding: 60px 20px;
-      text-align: center;
-    }
+.container {
+  padding: 20px;
+}
 
-    .product {
-      border: 1px solid #ddd;
-      padding: 25px;
-      max-width: 300px;
-      margin: 20px auto;
-    }
+.card {
+  background: #1b1b1b;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.6);
+}
 
-    .price {
-      font-size: 22px;
-      margin: 10px 0;
-    }
+.card h2 {
+  color: #ff6a00;
+}
 
-    .available {
-      color: green;
-    }
+button {
+  background: #ff3c00;
+  border: none;
+  padding: 12px 20px;
+  color: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  margin: 5px 0;
+  width: 100%;
+}
 
-    .coming {
-      opacity: 0.5;
-    }
+button:hover {
+  background: #ff6a00;
+}
 
-    .buttons a {
-      display: inline-block;
-      margin: 10px 5px;
-      padding: 10px 20px;
-      background: #000;
-      color: #fff;
-      text-decoration: none;
-      font-size: 14px;
-    }
+.panel {
+  border: 1px solid #333;
+  padding: 15px;
+  border-radius: 10px;
+  margin-top: 10px;
+}
 
-    footer {
-      text-align: center;
-      padding: 20px;
-      border-top: 1px solid #eee;
-    }
-  </style>
+footer {
+  text-align: center;
+  padding: 15px;
+  color: #888;
+  background: #111;
+}
+.warning {
+  color: #ff4444;
+  font-size: 14px;
+}
+</style>
 </head>
+
 <body>
 
 <header>
-  <img src="logo.png" class="logo" alt="FENZY">
-  <nav>
-    <a href="#shop">Shop</a>
-    <a href="#contact">Order</a>
-  </nav>
+  <h1>🔥 Free Fire Panel Hub</h1>
+  <p>Free Fire Fan Website • UI Demo Panel</p>
 </header>
 
-<section class="hero">
-  <h1>FENZY</h1>
-  <p>Minimal. Bold. Premium Streetwear.</p>
-  <a href="#shop" class="btn">Shop Now</a>
-</section>
+<nav>
+  <a href="#">Home</a>
+  <a href="#panel">Panels</a>
+  <a href="#tips">Tips</a>
+  <a href="#disclaimer">Disclaimer</a>
+</nav>
 
-<section id="shop" class="shop">
-  <h2>Shop</h2>
+<div class="container">
 
-  <div class="product">
-    <h3>Men Hoodie</h3>
-    <p class="price">৳500</p>
-    <p class="status available">Available Now</p>
-    <div class="buttons">
-      <a href="https://m.me/YOUR_PAGE" target="_blank">Messenger</a>
-      <a href="https://wa.me/880XXXXXXXXX" target="_blank">WhatsApp</a>
+  <div class="card">
+    <h2>Welcome</h2>
+    <p>
+      This is a Free Fire fan website.  
+      Here you will find **panel UI demo**, tips & guides.
+    </p>
+  </div>
+
+  <div class="card" id="panel">
+    <h2>🎮 Free Panel (UI Demo)</h2>
+
+    <div class="panel">
+      <button onclick="demo()">Headshot Boost (Demo)</button>
+      <button onclick="demo()">Aim Assist (Demo)</button>
+      <button onclick="demo()">No Recoil (Demo)</button>
+      <p class="warning">⚠️ Demo only – No real effect</p>
     </div>
   </div>
 
-  <div class="product coming">
-    <h3>Women Collection</h3>
-    <p class="status">Coming Soon</p>
+  <div class="card" id="tips">
+    <h2>🎯 Pro Tips</h2>
+    <ul>
+      <li>Use proper sensitivity</li>
+      <li>Always aim at chest then drag up</li>
+      <li>Use 2x / 4x scope correctly</li>
+      <li>Stable internet = better headshot</li>
+    </ul>
   </div>
-</section>
 
-<section id="contact" class="contact">
-  <h2>Order Now</h2>
-  <p>Message us on Facebook or WhatsApp</p>
-</section>
+  <div class="card" id="disclaimer">
+    <h2>⚠️ Disclaimer</h2>
+    <p>
+      This website is for **educational & UI demonstration purposes only**.  
+      We do NOT provide hacks, cheats, mods or illegal tools.  
+      Free Fire is a registered trademark of Garena.
+    </p>
+  </div>
+
+</div>
 
 <footer>
-  <p>© 2026 FENZY. All rights reserved.</p>
+  © 2026 Free Fire Fan Website | Not Official
 </footer>
+
+<script>
+function demo() {
+  alert("This is only a UI demo 😄\nNo hack, no cheat.");
+}
+</script>
 
 </body>
 </html>
