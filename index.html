@@ -26,11 +26,10 @@
         }
 
         a { text-decoration: none; color: inherit; }
-        ul { list-style: none; padding: 0; margin: 0; }
+        ul { list-style: square; margin-left: 20px; }
 
-        /* NAVBAR */
         .navbar {
-            background: rgba(10, 14, 23, 0.95);
+            background: rgba(10,14,23,0.95);
             backdrop-filter: blur(10px);
             padding: 15px 30px;
             display: flex;
@@ -39,14 +38,12 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            border-bottom: 2px solid rgba(0, 242, 234, 0.1);
         }
 
         .brand-logo {
             font-family: 'Rajdhani', sans-serif;
             font-size: 1.5rem;
             font-weight: 700;
-            letter-spacing: 2px;
         }
         .brand-logo span { color: var(--primary-color); }
 
@@ -57,29 +54,23 @@
         }
 
         .nav-item {
-            font-size: 0.9rem;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
             padding: 8px 12px;
-            border-radius: 5px;
+            border-radius: 6px;
             transition: 0.3s;
         }
+
         .nav-item i { color: var(--primary-color); }
+
         .nav-item:hover {
-            background: rgba(0, 242, 234, 0.1);
+            background: rgba(0,242,234,0.1);
             color: var(--primary-color);
         }
 
-        .discord-link i { color: #5865F2; }
-        .youtube-link i { color: #FF0000; }
-
-        /* HERO */
         .hero-header {
             text-align: center;
-            padding: 80px 20px 40px;
-            background: radial-gradient(circle, #1a233a 0%, #0a0e17 70%);
+            padding: 80px 20px;
+            background: radial-gradient(circle, #1a233a, #0a0e17);
         }
 
         .hero-header h1 {
@@ -90,14 +81,9 @@
             -webkit-text-fill-color: transparent;
         }
 
-        .hero-header p {
-            color: #94a3b8;
-        }
-
-        /* PANEL GRID */
         .panel-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
             gap: 25px;
             max-width: 1100px;
             margin: auto;
@@ -106,12 +92,11 @@
 
         .panel-card {
             background: var(--bg-card);
-            padding: 35px 25px;
+            padding: 35px;
             border-radius: 20px;
             text-align: center;
             cursor: pointer;
             transition: 0.4s;
-            position: relative;
         }
 
         .panel-card:hover {
@@ -125,7 +110,6 @@
             margin-bottom: 15px;
         }
 
-        /* CONTENT AREA */
         #content-display-area {
             display: none;
             max-width: 800px;
@@ -148,8 +132,8 @@
             padding: 12px 25px;
             border-radius: 30px;
             cursor: pointer;
-            margin-bottom: 20px;
             color: white;
+            margin-bottom: 20px;
         }
 
         footer {
@@ -159,9 +143,9 @@
             color: #64748b;
         }
 
-        @media (max-width: 900px) {
-            .hero-header h1 { font-size: 2.5rem; }
-            .navbar { flex-direction: column; }
+        @media(max-width:900px){
+            .hero-header h1{font-size:2.5rem;}
+            .navbar{flex-direction:column;}
         }
     </style>
 </head>
@@ -170,22 +154,10 @@
 
 <nav class="navbar">
     <div class="brand-logo">69X <span>PRO PANEL</span></div>
-
     <ul class="nav-links">
-        <li><a class="nav-item" onclick="showHome()"><i class="fa-solid fa-house"></i> Home</a></li>
-        <li><a class="nav-item" onclick="showContent('privacy')"><i class="fa-solid fa-shield-halved"></i> Privacy</a></li>
-        <li><a class="nav-item" onclick="showContent('disclaimer')"><i class="fa-solid fa-triangle-exclamation"></i> Disclaimer</a></li>
-
-        <li>
-            <a href="https://discord.gg/2qNzUt3Z" target="_blank" class="nav-item discord-link">
-                <i class="fa-brands fa-discord"></i> Discord
-            </a>
-        </li>
-        <li>
-            <a href="https://www.youtube.com/@NAZIM69x" target="_blank" class="nav-item youtube-link">
-                <i class="fa-brands fa-youtube"></i> YouTube
-            </a>
-        </li>
+        <li><a class="nav-item" onclick="showHome()">Home</a></li>
+        <li><a class="nav-item" onclick="showContent('privacy')">Privacy</a></li>
+        <li><a class="nav-item" onclick="showContent('disclaimer')">Disclaimer</a></li>
     </ul>
 </nav>
 
@@ -196,8 +168,6 @@
     </header>
 
     <div class="panel-container">
-
-        <!-- ✅ FREE PANEL DOWNLOAD -->
         <div class="panel-card" onclick="downloadFreePanel()">
             <i class="fa-solid fa-bolt card-icon"></i>
             <h3>FREE PANEL</h3>
@@ -207,21 +177,12 @@
         <div class="panel-card">
             <i class="fa-solid fa-crown card-icon" style="color:#ffd700"></i>
             <h3>VIP PANEL</h3>
-            <p>Unlock premium power and exclusive tools.</p>
-        </div>
-
-        <div class="panel-card">
-            <i class="fa-solid fa-computer card-icon" style="color:var(--secondary-color)"></i>
-            <h3>EMULATOR BYPASS</h3>
-            <p>Play safely on PC without detection risks.</p>
         </div>
 
         <div class="panel-card">
             <i class="fa-solid fa-crosshairs card-icon"></i>
             <h3>AIMBOT HEAD</h3>
-            <p>Dominate with maximum precision targeting.</p>
         </div>
-
     </div>
 </main>
 
@@ -231,46 +192,59 @@
 </section>
 
 <footer>
-    &copy; 2024 69X PRO PANEL. Developed for Gamers.
+    © 2024 69X PRO PANEL. Developed for Gamers.
 </footer>
 
 <script>
-    const mainContent = document.getElementById("main-content");
-    const contentArea = document.getElementById("content-display-area");
-    const dynamicText = document.getElementById("dynamic-content-text");
+const mainContent = document.getElementById("main-content");
+const contentArea = document.getElementById("content-display-area");
+const dynamicText = document.getElementById("dynamic-content-text");
 
-    function showHome() {
-        mainContent.style.display = "block";
-        contentArea.style.display = "none";
-        window.scrollTo(0,0);
+function showHome(){
+    mainContent.style.display="block";
+    contentArea.style.display="none";
+}
+
+function showContent(type){
+    mainContent.style.display="none";
+    contentArea.style.display="block";
+
+    if(type==="privacy"){
+        dynamicText.innerHTML=`
+        <h2 class="content-title">Privacy Policy</h2>
+        <ul>
+            <li>আমরা কোনো গেম আইডি বা পাসওয়ার্ড সংরক্ষণ করি না</li>
+            <li>ডেটা কোনো তৃতীয় পক্ষের সাথে শেয়ার করা হয় না</li>
+        </ul>`;
     }
 
-    function showContent(type) {
-        mainContent.style.display = "none";
-        contentArea.style.display = "block";
+    if(type==="disclaimer"){
+        dynamicText.innerHTML=`
+        <h2 class="content-title">Disclaimer</h2>
 
-        if(type === "privacy") {
-            dynamicText.innerHTML = `
-            <h2 class="content-title">Privacy Policy</h2>
-            <ul>
-                <li>আমরা কোনো গেম আইডি বা পাসওয়ার্ড সংরক্ষণ করি না</li>
-                <li>ডেটা কোনো তৃতীয় পক্ষের সাথে শেয়ার করা হয় না</li>
-            </ul>`;
-        }
+        <h3>🇧🇩 বাংলা</h3>
+        <ul>
+            <li>নিজ দায়িত্বে ব্যবহার করুন।</li>
+            <li>অ্যাকাউন্ট ব্যান হলে আমরা দায়ী নই।</li>
+        </ul>
 
-        if(type === "disclaimer") {
-            dynamicText.innerHTML = `
-            <h2 class="content-title">Disclaimer</h2>
-            <ul>
-                <li>নিজ দায়িত্বে ব্যবহার করুন</li>
-                <li>অ্যাকাউন্ট ব্যান হলে আমরা দায়ী না</li>
-            </ul>`;
-        }
+        <h3>🇺🇸 English</h3>
+        <ul>
+            <li>Use at your own risk.</li>
+            <li>We are not responsible if your account gets banned.</li>
+        </ul>
+
+        <h3>🇮🇳 हिंदी</h3>
+        <ul>
+            <li>अपने जोखिम पर उपयोग करें।</li>
+            <li>यदि आपका अकाउंट बैन होता है, तो हम जिम्मेदार नहीं होंगे।</li>
+        </ul>`;
     }
+}
 
-    function downloadFreePanel() {
-        window.location.href = "https://drive.google.com/uc?export=download&id=1gH5dtrPrEkypstG375lqMmxsa2PsfXvE";
-    }
+function downloadFreePanel(){
+    window.location.href="https://drive.google.com/uc?export=download&id=1gH5dtrPrEkypstG375lqMmxsa2PsfXvE";
+}
 </script>
 
 </body>
